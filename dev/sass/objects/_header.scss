@@ -1,0 +1,38 @@
+header.global{
+  padding: 1rem;
+  background-color: $base-bg;
+  display: flex;
+  justify-content: space-between;
+  position: fixed;
+  width: 100%;
+  .logo{}
+  .navigation{
+  	display: flex;
+  	justify-content: space-between;
+  	flex-direction: column;
+    nav{
+      order: 2;
+      display: flex;
+      a{
+        color: $highlight-color;
+        text-decoration: none;
+        margin: 0  1rem;
+      }
+    }
+  	aside{
+      margin-top: -1rem;
+      order: 1;
+      display: flex;
+      justify-content: flex-end;
+      a{
+        text-decoration: none;
+        display: block;
+        padding: .5rem 1rem;
+        margin: 0 .5rem;
+        background-color: $highlight-color;
+        text-align: center;
+        color: white;
+      }
+  	}
+  }
+}
