@@ -1,0 +1,17 @@
+a{
+  transition: .25s all ease;
+}
+
+.more{
+  font-family: $fonts-condensed;
+  text-transform: uppercase;
+  display: inline-block;
+  text-decoration: none;
+  padding: .75rem 1rem;
+  color: $white;
+  border: 1px solid $white;
+  &:hover{
+    background-color: $white;
+    color: blue;
+  }
+}

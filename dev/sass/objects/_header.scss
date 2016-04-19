@@ -1,38 +1,41 @@
 header.global{
-  padding: 1rem;
-  background-color: $base-bg;
+  padding: 2rem 1rem;
   display: flex;
   justify-content: space-between;
+  align-items: flex-end;
   position: fixed;
   width: 100%;
-  .logo{}
-  .navigation{
-  	display: flex;
-  	justify-content: space-between;
-  	flex-direction: column;
-    nav{
-      order: 2;
-      display: flex;
-      a{
-        color: $highlight-color;
-        text-decoration: none;
-        margin: 0  1rem;
-      }
+  z-index: 100;
+  .logo{
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    img{
+      max-height: 90px;
     }
-  	aside{
-      margin-top: -1rem;
-      order: 1;
-      display: flex;
-      justify-content: flex-end;
-      a{
-        text-decoration: none;
-        display: block;
-        padding: .5rem 1rem;
-        margin: 0 .5rem;
-        background-color: $highlight-color;
-        text-align: center;
-        color: white;
-      }
-  	}
+  }
+  aside{
+    position: absolute;
+    top: 0;
+    right: 1rem;
+    display: flex;
+
+    a{
+      background-color: none;
+      border: 1px solid white;
+      padding: .75rem 1rem;
+      margin: 0 .5rem;
+      color: white;
+      text-decoration: none;
+      display: block;
+    }
+  }
+  nav a{
+    text-decoration: none;
+    font-family: $fonts-mono;
+    color: $white;
+    font-size: 1.5rem;
+    // text-transform: uppercase;
+    margin: 0 1rem;
   }
 }
