@@ -1,11 +1,11 @@
 .hero{
   background-color: blue;
-  height: 100vh;
+  height: auto;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding:  calc(115px + 5rem) 15% 5rem;
+  padding:  calc(115px + 3.5rem) 15% 5rem;
   position: relative;
   min-height: 600px;
   overflow: hidden;

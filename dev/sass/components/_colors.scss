@@ -3,6 +3,7 @@ $white: #FFF;
 
 
 $sky: #BAC0DE;
+$light-sky: lighten($sky, 10%);
 $dark-sky: hsla(230, 35%, 25%, 0.9);
 
 $blue: #0039ff;

@@ -54,6 +54,7 @@ header.global{
     }
   }
   &.scrolled{
+    border-bottom: 1px solid $dark-sky;
     .logo, .logo small, .logo i, a{
       color: $dark-sky;
     }

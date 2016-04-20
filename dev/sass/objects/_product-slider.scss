@@ -1,17 +1,16 @@
 .product-slider{
-  margin: 0 auto;
+  background-color: $white;
   padding: 5rem 1rem;
-  border: 1px solid $light-grey;
+  border-bottom: 1px solid $light-sky;
   .container{
-    max-width: 1150px;
-    overflow: hidden;
-    margin: 0 auto;
+      @extend .container;
   }
+
   header{
-    padding-bottom: 2rem;
     display: flex;
     justify-content: space-between;
     align-items: baseline;
+    margin: 0 1rem 2rem;
     h2{
       font-size: 2rem;
     }
@@ -28,9 +27,16 @@
   .wrapper{
     width: auto;
     display: flex;
+    justify-content: space-between;
     overflow: hidden;
-    a{
-      width: 33.3333333%;
+  }
+
+  &.grid{
+    .wrapper{
+      flex-wrap: wrap;
+    }
+    .product{
+      margin-bottom: 2rem;
     }
   }
 }
