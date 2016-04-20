@@ -68,7 +68,8 @@ function navigationFade(target, rgb) {
 /***************************************
   Functions to run on load, resize, and scroll
 ***************************************/
-sliderLayout(".product-slider");
+sliderLayout(".product-slider.detailed");
+navigationFade("header.global", "255, 255, 255");
 
 $(window).resize( function() {
   sliderLayout(".product-slider");

@@ -36,7 +36,12 @@
       flex-wrap: wrap;
     }
     .product{
-      margin-bottom: 2rem;
+      margin-bottom: 3rem;
+      border: none;
+      .img-container{
+        border: 1px solid $blue;
+        margin-bottom: 1rem;
+      }
     }
   }
 }

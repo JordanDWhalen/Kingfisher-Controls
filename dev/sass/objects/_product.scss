@@ -45,11 +45,6 @@
       display: block;
       margin-top: .5rem;
     }
-    h3{
-      color: $blue;
-      font-size: 1.25rem;
-      font-weight: 600;
-    }
     p{
       line-height: 1.25;
     }
@@ -57,5 +52,10 @@
       color: $dark-sky;
       text-decoration: underline;
     }
+  }
+  h3{
+    color: $blue;
+    font-size: 1.25rem;
+    font-weight: 600;
   }
 }
