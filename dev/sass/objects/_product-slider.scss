@@ -1,4 +1,4 @@
-.lines{
+.product-slider{
   margin: 0 auto;
   padding: 5rem 1rem;
   border: 1px solid $light-grey;
@@ -11,19 +11,20 @@
     padding-bottom: 2rem;
     display: flex;
     justify-content: space-between;
+    align-items: baseline;
     h2{
       font-size: 2rem;
     }
   }
+
   .controls{
     display: inline-flex;
-    div{
-      display: block;
-      padding: 1rem;
-      background-color: $white;
-      border: 1px solid $blue
+    height: 50px;
+    .button{
+      margin-left: 1rem;
     }
   }
+
   .wrapper{
     width: auto;
     display: flex;

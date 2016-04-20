@@ -2,16 +2,49 @@ a{
   transition: .25s all ease;
 }
 
-.more{
+.button{
+  display: block;
+  padding: 1rem 1rem;
+  background-color: $white;
+  border: 1px solid $blue;
+  transition: $default-transition;
+  i{
+    color: $blue;
+    text-align: center;
+    &:before{
+      width: 1rem!important;
+      height: 1rem!important;
+    }
+  }
+  &.view-all{
+    padding: 1rem 1.5rem;
+  }
+  &:hover{
+    background-color: $blue;
+    color: $white;
+    cursor: pointer;
+    i{
+      color: $white;
+    }
+  }
+}
+
+.hollow{
+  border: none;
+  font-weight: 100;
+  letter-spacing: .05rem;
+  font-size: 1rem;
   font-family: $fonts-condensed;
   text-transform: uppercase;
   display: inline-block;
   text-decoration: none;
   padding: .75rem 1rem;
-  color: $white;
   border: 1px solid $white;
+  background-color: transparent;
+  color: $white;
   &:hover{
+    color: $white;
     background-color: $white;
-    color: blue;
+    color: $dark-sky;
   }
 }

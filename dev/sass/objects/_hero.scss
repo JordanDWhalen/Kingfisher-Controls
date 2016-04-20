@@ -34,18 +34,25 @@
     z-index: 1;
   }
   .bg{
-    width: 100%;
+    opacity: .7;
+    width: 105%;
     height: 100%;
     position: absolute;
     z-index: 0;
     top: 0;
     left: 0;
-    filter: opacity(0.5) grayscale(1);
+    filter: contrast(2) grayscale(1) brightness(.8);
     transition: .5s all ease;
+    background-position: center;
+    background-size: 120%;
   }
-  .more:hover{
+  .hollow{
+    font-size: 1.25rem;
+    padding: .75rem 1.25rem;
+  }
+  .hollow:hover{
     & + .bg{
-      filter: opacity(.75) grayscale(1);
+      opacity: .85;
       transform: scale(1.1);
     }
   }
