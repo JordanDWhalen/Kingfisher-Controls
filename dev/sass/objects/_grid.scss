@@ -1,0 +1,76 @@
+.grid{
+  padding: 5rem 1rem;
+  & > .container{
+    overflow: visible;
+    & > .wrapper{
+      margin: 0 -1rem;
+      width: auto;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      overflow: hidden;
+    }
+  }
+  .grid-item{
+    position: relative;
+    text-decoration: none;
+    margin: 0 1rem 2rem;
+    width: calc(20% - 2rem);
+    @include breakpoint(1450px) {
+      width: calc(33.33333333% - 2rem);
+    }
+    @include breakpoint(1000px) {
+      width: calc(50% - 2rem);
+    }
+    .img-container{
+        display: block;
+        border: 1px solid $blue;
+        height: 200px;
+        position: relative;
+        padding: 2rem;
+        margin-bottom: 1rem;
+        @include breakpoint( 1450px) {
+          height: 300px;
+        }
+        .img{
+          position: relative;
+          display: block;
+          width: 100%;
+          height: 100%;
+          background-size: contain;
+          background-position: center;
+          background-repeat: no-repeat;
+          z-index: 1;
+        }
+        .tint{
+          position: absolute;
+          top: 0;
+          left: 0;
+          height: 100%;
+          width:100%;
+          z-index: 0;
+        }
+      }
+      .content{
+        border-top: $blue 1px solid ;
+        background-color: $light-sky;
+        padding: 2rem;
+        * + *{
+          display: block;
+          margin-top: .5rem;
+        }
+        p{
+          line-height: 1.25;
+        }
+        span{
+          color: $dark-sky;
+          text-decoration: underline;
+        }
+      }
+      h3{
+        color: $blue;
+        font-size: 1.25rem;
+        font-weight: 600;
+      }
+  }
+}

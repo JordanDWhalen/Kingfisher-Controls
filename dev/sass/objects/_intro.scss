@@ -1,0 +1,36 @@
+.intro{
+  display: flex;
+  overflow: hidden;
+  h2{
+    font-size: 2rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+  }
+  p{
+    max-width: 55rem;
+    font-size: 1.25rem;
+  }
+  * + *{
+    margin-top: 1rem;
+  }
+  .wrapper{
+    padding: 5rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+  }
+  .img{
+    width: 40%;
+    max-height: 500px;
+    margin: 0;
+    overflow: hidden;
+    filter: contrast(1.25) grayscale(.5) brightness(.8);
+  }
+  img{
+    margin: 0;
+    display: block;
+    width: 200%;
+    margin-left: -50%;
+  }
+}

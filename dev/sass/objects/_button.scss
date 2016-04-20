@@ -1,5 +1,5 @@
 a{
-  transition: .25s all ease;
+  transition: .125s all ease;
 }
 
 .button{
@@ -27,24 +27,47 @@ a{
       color: $white;
     }
   }
-}
-
-.hollow{
-  border: none;
-  font-weight: 100;
-  letter-spacing: .05rem;
-  font-size: 1rem;
-  font-family: $fonts-condensed;
-  text-transform: uppercase;
-  display: inline-block;
-  text-decoration: none;
-  padding: .75rem 1rem;
-  border: 1px solid $white;
-  background-color: transparent;
-  color: $white;
-  &:hover{
+  &.hollow{
+    border: none;
+    font-weight: 100;
+    letter-spacing: .05rem;
+    font-size: 1rem;
+    font-family: $fonts-condensed;
+    text-transform: uppercase;
+    display: inline-block;
+    text-decoration: none;
+    padding: .75rem 1rem;
+    border: 1px solid $white;
+    background-color: transparent;
     color: $white;
-    background-color: $white;
-    color: $dark-sky;
+    &:hover{
+      color: $white;
+      background-color: $white;
+      color: $dark-sky;
+    }
+    &.dark{
+      border-color: $dark-sky;
+      color: $dark-sky;
+      &:hover{
+        background-color: $dark-sky;
+        color: white;
+      }
+    }
+    &.medium{
+      border-color: $sky;
+      color: $sky;
+      &:hover{
+        background-color: $sky;
+        color: $dark-sky;
+      }
+    }
+    &.blue{
+      border-color: $blue;
+      color: $blue;
+      &:hover{
+        background-color: $blue;
+        color: $white;
+      }
+    }
   }
 }

@@ -6,16 +6,28 @@ header.global{
   position: fixed;
   width: 100%;
   z-index: 100;
+  border-bottom: 1px solid $sky;
   .logo{
-    font-family: $icon-font;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    i{
+    a{
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+    }
+    a:before{
+      display: block;
+    }
+    &:hover{
+      a, small{
+        color: $sky;
+      }
+    }
+    a{
       font-size: 3rem;
       color: white;
+      transition: .125s all ease;
+      text-decoration: none;
     }
     small{
       font-size: 14px;
@@ -24,17 +36,42 @@ header.global{
       letter-spacing: .125rem;
       margin-top: .5rem;
       color: $white;
+      transition: .125s all ease;
     }
   }
   nav {
+    margin: 0 1rem;
     width: 300px;
     display: flex;
-    justify-content: space-between;
+    &:first-of-type{
+      justify-content: flex-start;
+      a{
+        margin-right: 2rem;
+      }
+    }
+    &:last-of-type{
+      justify-content: flex-end;
+      a{
+        margin-left: 2rem;
+      }
+    }
     a{
       text-decoration: none;
       font-family: $fonts-mono;
       color: $white;
       font-size: 1.5rem;
+      transition: .125s all ease;
+      border-bottom: 1px solid transparent;
+      &.icon{
+        border: none;
+        &:hover{
+          border: none;
+        }
+      }
+      &:hover{
+        color: $sky;
+        border-bottom: 1px solid $sky;
+      }
     }
   }
   aside{
@@ -54,12 +91,12 @@ header.global{
     }
   }
   &.scrolled{
-    border-bottom: 1px solid $dark-sky;
+    border-bottom: 1px solid $blue;
     .logo, .logo small, .logo i, a{
-      color: $dark-sky;
+      color: $blue;
     }
     aside a{
-      border-color: $dark-sky;
+      border-color: $blue;
     }
   }
 }

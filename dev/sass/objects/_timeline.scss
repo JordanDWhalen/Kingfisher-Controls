@@ -1,0 +1,68 @@
+.timeline{
+  & > header{
+    height: 400px;
+    background-size: cover;
+    background-position: 50%;
+    display: flex;
+    align-items: flex-end;
+    padding: 2rem;
+    position: relative;
+    background-color: $medium-sky;
+    .bg{
+      opacity: .75;
+      filter: contrast(1.25) grayscale(1) brightness(.8);
+      z-index: 0;
+    }
+    h3{
+      filter: none;
+      font-size: 3.5rem;
+      color: $light-sky;
+      font-weight: 600;
+      width: 100%;
+      z-index: 1;
+      position: relative;
+      @extend .container;
+    }
+  }
+  article{
+    @extend .container;
+    font-size: 1.25rem;
+    line-height: 1.5;
+    padding: 1rem 0;
+    &:first-of-type{
+      margin-top: 2rem;
+    }
+    &:last-of-type{
+      margin-bottom: 4rem;
+    }
+    h4{
+      font-size: 2.5rem;
+      font-weight: 100;
+    }
+    p{
+      max-width: 55rem;
+    }
+    &.header-bg{
+      overflow: visible;
+      header{
+        height: calc(200px + 4rem);
+        max-width: calc(55rem + 4rem);
+        margin: 0 -2rem;
+        padding: 1rem 2rem;
+        display: flex;
+        justify-content: flex-end;
+        align-items: flex-end;
+        margin-bottom: 1rem;
+        h4{
+          line-height: 1;
+          width: 100%;
+        }
+      }
+    }
+    &.highlighted{
+      .wrapper{
+        margin-left: -2rem;
+      }
+    }
+  }
+}

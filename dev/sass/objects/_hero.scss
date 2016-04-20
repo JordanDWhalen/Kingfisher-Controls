@@ -5,7 +5,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding:  calc(115px + 3.5rem) 15% 5rem;
+  padding:  calc(115px + 5rem) 15% 5rem;
   position: relative;
   min-height: 600px;
   overflow: hidden;
@@ -32,6 +32,12 @@
     font-size: 2rem;
     position: relative;
     z-index: 1;
+  }
+  &.fade{
+    .bg{
+      opacity: .85;
+      transform: scale(1.1);
+    }
   }
   .bg{
     opacity: .7;

@@ -1,0 +1,32 @@
+footer.global{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: $light-sky;
+  padding: 2rem;
+  border-top: 1px solid $blue;
+  .logo{
+    font-size: 1.5rem;
+    display: flex;
+    align-items: center;
+    i{
+      color: $medium-sky;
+      margin-right: 1rem;
+    }
+  }
+  small{
+    display: block;
+    font-size: 1.25rem;
+    color: $medium-sky;
+    text-transform: uppercase;
+  }
+  nav{
+    a{
+      margin: 0 1rem;
+      color: $medium-sky;
+      &:hover{
+        color: $blue;
+      }
+    }
+  }
+}
