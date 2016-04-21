@@ -65,16 +65,84 @@ function navigationFade(target, rgb) {
   }
 }
 
+// Setting up a function to fix image sizes for the Product Page
+function flexImagefix(target){
+  var square = $(target).width();
+  $(target).height(square);
+}
+
+function overlayLoad(){
+  setTimeout(function(){
+    var helpHeight    = $(".overlay .help").innerHeight(),
+        requestHeight = $(".overlay .request").innerHeight();
+
+    $(".overlay .help").css("top", helpHeight * -1);
+    $(".overlay .request").css("top", requestHeight * -1);
+  }, 50);
+}
+
+function overlayOpen(overlayType){
+  var overlayOffset = $("." + overlayType).innerHeight();
+  var paddingIncrease = parseInt($(".hero").css("padding-top"), 10) + overlayOffset;
+  $(".overlay ." + overlayType).addClass("active");
+  $(".header-wrapper").velocity({ paddingTop: overlayOffset }, { easing: "linear"});
+  $("header.global").addClass("overlay-open");
+  $(".hero, .product-hero").velocity({paddingTop: paddingIncrease}, { easing: "linear"});
+}
+
+function overlayClose(overlayType){
+  var overlayOffset = $("." + overlayType).innerHeight();
+  var paddingDecrease = parseInt($(".hero").css("padding-top"), 10) - overlayOffset;
+  $(".overlay ." + overlayType).removeClass("active");
+  $(".header-wrapper").velocity({ paddingTop: 0 }, { easing: "linear"});
+  $("header.global").removeClass("overlay-open");
+  $(".hero").velocity({paddingTop: paddingDecrease}, { easing: "linear"});
+}
+
 /***************************************
   Functions to run on load, resize, and scroll
 ***************************************/
+var i = 0;
+$(".product-slider.detailed").each( function(){
+  sliderLayout(".product-slider.detailed" + "." + i);
+  i++;
+})
+
 sliderLayout(".product-slider.detailed");
 navigationFade("header.global", "255, 255, 255");
+flexImagefix(".product-info .images .selected-image .wrapper img");
+
+overlayLoad();
 
 $(window).resize( function() {
   sliderLayout(".product-slider");
+  flexImagefix(".product-info .images .selected-image .wrapper img");
 });
 
 $(window).scroll( function() {
   navigationFade("header.global", "255, 255, 255");
 });
+
+
+/***************************************
+  Interactive JS
+***************************************/
+
+// Setting up the functionality for the slide down view of the request a quote, and help sections.
+// This needs to be disabled for 50ms in order for JS to have time to properly calculate the height of these sections
+setTimeout(function(){
+  $("header.global aside a").click( function(){
+    var buttonText = $(this).text();
+    var overlayType = $(this).attr("class").split(" ").pop(0);
+    $(".overlay").toggleClass("open");
+    $(this).toggleClass("active");
+    $(this).attr("data-text", buttonText);
+    if($(".overlay").hasClass("open")){
+      overlayOpen(overlayType);
+      $(this).text("Close Overlay");
+    } else {
+      overlayClose(overlayType);
+      $(this).text($(this).attr("data-text"));
+    }
+  });
+}, 50);

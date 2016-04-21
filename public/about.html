@@ -16,27 +16,49 @@
   <script src="js/vendor/velocity.js"></script>
 </head>
 <body class="about">
-  <header class="global">
-    <nav class="primary">
-      <a class='active' href="about.html">About</a>
-      <a href="#">Products</a>
-      <a href="#">Contact</a>
-    </nav>
-    <div class="logo" >
-      <a href="#" class="icon-kf">
-        <small>controls</small>
-      </a>
+  <div class="header-wrapper">
+    <div class="overlay">
+      <div class="request">
+        <header>
+          <h2>Request A Quote</h2>
+        </header>
+        <p>If you'd like to request a quote about a specific product or a few different products, you can vist the store, find the product you're looking for, and either request a quote on that page, or add items to your cart, and then request a quote for all of them on the cart page.</p>
+        <div class="options">
+          <a class="button hollow" href="#">Visit the Store</a>
+        </div>
+      </div>
+      <div class="help">
+        <header>
+          <h2>How can we help?</h2>
+        </header>
+        <div class="options">
+          <a href="#" class="button hollow">Im looking for a specific product/product line</a>
+          <a href="#" class="button hollow">I have a question</a>
+        </div>
+      </div>
     </div>
-    <nav class="store">
-      <a href="#">Store</a>
-      <a class="icon icon-basket" href="#"></a>
-      <a class="icon icon-search" href="#"></a>
-      <aside>
-        <a class="button hollow" href="#">Request a Quote</a>
-        <a class="button hollow" href="#">Help</a>
-      </aside>
-    </nav>
-  </header>
+    <header class="global">
+      <nav class="primary">
+        <a class="active" href="about.html">About</a>
+        <a href="products.html">Products</a>
+        <a href="#">Contact</a>
+      </nav>
+      <div class="logo" >
+        <a href="#" class="icon-kf">
+          <small>controls</small>
+        </a>
+      </div>
+      <nav class="store">
+        <a href="#">Store</a>
+        <a class="icon icon-basket" href="#"></a>
+        <a class="icon icon-search" href="#"></a>
+        <aside>
+          <a class="button hollow request" href="#">Request a Quote</a>
+          <a class="button hollow help" href="#">Help</a>
+        </aside>
+      </nav>
+    </header>
+  </div>
   <main>
     <section class="hero">
       <h1>About Kingfisher Controls</h1>
@@ -107,10 +129,12 @@
     </section>
     <section class="grid">
       <div class="container">
-        <header>
-          <h2>Our Services</h2>
-          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Inventore eum quibusdam sed, dignissimos voluptates debitis voluptas accusantium est porro sequi, assumenda, quae eos aspernatur animi, dolores magni tenetur eveniet! Dolorum!</p>
-          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Enim, magnam, eligendi? Laudantium vel, suscipit ipsam dolor ducimus alias molestiae autem reprehenderit voluptates temporibus est. Pariatur quidem assumenda velit recusandae, deleniti!</p>
+        <header class="lead">
+          <div class="content">
+            <h2>Our Services</h2>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Inventore eum quibusdam sed, dignissimos voluptates debitis voluptas accusantium est porro sequi, assumenda, quae eos aspernatur animi, dolores magni tenetur eveniet! Dolorum!</p>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Enim, magnam, eligendi? Laudantium vel, suscipit ipsam dolor ducimus alias molestiae autem reprehenderit voluptates temporibus est. Pariatur quidem assumenda velit recusandae, deleniti!</p>
+          </div>
         </header>
         <div class="wrapper">
           <a href="#" class="grid-item">
@@ -185,12 +209,106 @@
               <h4>Next Year</h4>
             </header>
             <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iste ratione consectetur mollitia accusamus quod impedit eligendi asperiores, nobis, ut tempora delectus perferendis quis explicabo sequi animi reiciendis quisquam accusantium, beatae.</p>
-            <a href="#" class="button hollow blue">Request a Quote</a>
+            <div class="options">
+              <a href="#" class="button hollow blue">Request a Quote</a>
+              <a href="#" class="button hollow dark">Contact</a>
+            </div>
           </div>
         </div>
 
       </div>
 
+    </section>
+    <section class="product-list">
+      <div class="container">
+        <header class='lead'>
+          <div class="content">
+            <h3>Our Products</h3>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Veniam inventore sed doloremque recusandae, aliquam eaque. Saepe odit exercitationem perspiciatis reprehenderit, inventore recusandae dicta vel, quasi reiciendis quibusdam harum libero amet.</p>
+          </div>
+        </header>
+        <section class="list">
+          <article>
+            <a href="#" class="img-container">
+              <div class="img" style="background-image: url(img/example.png)"></div>
+              <div class="tint"></div>
+            </a>
+            <div class="content">
+              <h4><a href="#">Product Line Name</a></h4>
+              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quisquam reprehenderit in, et nemo dolorum porro perferendis, rerum consequatur adipisci earum, hic accusamus dolorem inventore laboriosam omnis praesentium accusantium dolor asperiores.</p>
+              <a href="#">Read More</a>
+            </div>
+          </article>
+          <article>
+            <a href="#" class="img-container">
+              <div class="img" style="background-image: url(img/example.png)"></div>
+              <div class="tint"></div>
+            </a>
+            <div class="content">
+              <h4><a href="#">Product Line Name</a></h4>
+              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quisquam reprehenderit in, et nemo dolorum porro perferendis, rerum consequatur adipisci earum, hic accusamus dolorem inventore laboriosam omnis praesentium accusantium dolor asperiores.</p>
+              <a href="#">Read More</a>
+            </div>
+          </article>
+          <article>
+            <a href="#" class="img-container">
+              <div class="img" style="background-image: url(img/example.png)"></div>
+              <div class="tint"></div>
+            </a>
+            <div class="content">
+              <h4><a href="#">Product Line Name</a></h4>
+              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quisquam reprehenderit in, et nemo dolorum porro perferendis, rerum consequatur adipisci earum, hic accusamus dolorem inventore laboriosam omnis praesentium accusantium dolor asperiores.</p>
+              <a href="#">Read More</a>
+            </div>
+          </article>
+          <article>
+            <a href="#" class="img-container">
+              <div class="img" style="background-image: url(img/example.png)"></div>
+              <div class="tint"></div>
+            </a>
+            <div class="content">
+              <h4><a href="#">Product Line Name</a></h4>
+              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quisquam reprehenderit in, et nemo dolorum porro perferendis, rerum consequatur adipisci earum, hic accusamus dolorem inventore laboriosam omnis praesentium accusantium dolor asperiores.</p>
+              <a href="#">Read More</a>
+            </div>
+          </article>
+          <article>
+            <a href="#" class="img-container">
+              <div class="img" style="background-image: url(img/example.png)"></div>
+              <div class="tint"></div>
+            </a>
+            <div class="content">
+              <h4><a href="#">Product Line Name</a></h4>
+              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quisquam reprehenderit in, et nemo dolorum porro perferendis, rerum consequatur adipisci earum, hic accusamus dolorem inventore laboriosam omnis praesentium accusantium dolor asperiores.</p>
+              <a href="#">Read More</a>
+            </div>
+          </article>
+          <article>
+            <a href="#" class="img-container">
+              <div class="img" style="background-image: url(img/example.png)"></div>
+              <div class="tint"></div>
+            </a>
+            <div class="content">
+              <h4><a href="#">Product Line Name</a></h4>
+              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quisquam reprehenderit in, et nemo dolorum porro perferendis, rerum consequatur adipisci earum, hic accusamus dolorem inventore laboriosam omnis praesentium accusantium dolor asperiores.</p>
+              <a href="#">Read More</a>
+            </div>
+          </article>
+        </section>
+        <div class="highlighted">
+          <div class="wrapper">
+            <header>
+              <h4>What makes our product lines different</h4>
+            </header>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iste ratione consectetur mollitia accusamus quod impedit eligendi asperiores, nobis, ut tempora delectus perferendis quis explicabo sequi animi reiciendis quisquam accusantium, beatae.</p>
+            <div class="options">
+              <a href="#" class="button hollow blue">Request a Quote</a>
+              <a href="#" class="button hollow dark">Contact</a>
+            </div>
+          </div>
+        </div>
+
+      </div>
     </section>
 
     <section class="call-to-action">
@@ -211,8 +329,8 @@
     </div>
     <nav>
       <a href="#">Home</a>
-      <a href="about.html">About</a>
-      <a href="#">Products</a>
+      <a class="active" href="about.html">About</a>
+      <a href="products.html">Products</a>
       <a href="#">Contact</a>
       <a href="#">Store</a>
       <a href="#">FAQs</a>

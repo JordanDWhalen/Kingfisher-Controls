@@ -27,6 +27,14 @@ footer.global{
       &:hover{
         color: $blue;
       }
+      &.active{
+        color: $dark-sky;
+        font-weight: 900;
+        text-decoration: none;
+        &:hover{
+          pointer-events: none;
+        }
+      }
     }
   }
 }

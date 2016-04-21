@@ -1,0 +1,22 @@
+.products, .products-line{
+  main > section{
+    border: 10px solid $blue;
+    border-bottom: none;
+    border-top: none;
+    &:first-of-type{
+      border: none;
+    }
+    &:nth-of-type(2){
+      border-top: 12.5px solid $blue;
+    }
+    &:last-of-type(2){
+      border-bottom: 10px solid $blue;
+    }
+    &:last-of-type{
+      border: none;
+    }
+    & + section{
+      border-bottom: 1px solid $blue;
+    }
+  }
+}

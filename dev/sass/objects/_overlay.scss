@@ -1,0 +1,81 @@
+.overlay{
+  width: 100%;
+  position: absolute;
+  z-index: 1;
+  transition: .5s all ease;
+  pointer-events: none;
+  text-align: center;
+  h2{
+    font-size: 2rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+  }
+  p{
+    max-width: 55rem;
+  }
+  p + .options{
+    margin-top: 1rem;
+  }
+  .options{
+    a{
+      margin: 0 .5rem;
+    }
+  }
+  .help, .request{
+    position: absolute;
+    width: 100%;
+    top: 0;
+    left: 0;
+    padding: 2rem;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    pointer-events: none;
+    z-index: 1;
+    *{
+      opacity: 0;
+    }
+    &.active{
+      background-color: transparentize($dark-sky, .1);
+      pointer-events: all;
+      *{
+        opacity: 1;
+      }
+    }
+  }
+  *{
+    color: $white;
+  }
+  .button{
+    display: inline-block;
+  }
+  .product-info{
+    padding: 2rem;
+    border: 1px solid $white;
+    display: flex;
+    justify-content: space-between;
+    .content{
+      text-align: left;
+      h3{
+        font-size: 1.5rem;
+      }
+      p{
+        line-height: 1.5;
+        font-size: 1.25rem;
+      }
+    }
+    .options{
+      margin-left: 2rem;
+      *{
+        width: 100%;
+        margin-bottom: 1rem;
+        &.button{
+          width: auto;
+          float: left;
+          line-height: 1.25;
+    padding: .75rem 1rem;
+        }
+      }
+    }
+  }
+}

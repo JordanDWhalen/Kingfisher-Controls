@@ -7,17 +7,17 @@
   & + .product-slider{
     border-top: none
   }
+
+  .lead{
+    margin: 0 0 1rem;
+  }
+
+  .slide-wrapper{
+    margin: 0 -1rem;
+  }
+
   .container{
       @extend .container;
-  }
-  header{
-    display: flex;
-    justify-content: space-between;
-    align-items: baseline;
-    margin: 0 1rem 2rem;
-    h2{
-      font-size: 2rem;
-    }
   }
 
   .controls{
@@ -27,12 +27,9 @@
       margin-left: 1rem;
     }
   }
-
   .wrapper{
     width: auto;
     display: flex;
     justify-content: space-between;
-    overflow: hidden;
   }
-
 }

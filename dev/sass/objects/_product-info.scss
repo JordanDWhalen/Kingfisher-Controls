@@ -1,0 +1,189 @@
+.product-info{
+  width: 100%;
+  .container{
+    overflow: visible;
+    .wrapper{
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+    }
+    .wrapper > header{
+      width: 100%;
+      text-align: left;
+      margin-bottom: 2rem;
+    }
+  }
+  h1{
+    text-transform: none;
+    font-size: 3rem;
+    font-weight: 600;
+  }
+  p{
+    margin: .5rem 0;
+    font-size: 1.5rem;
+  }
+  .images{
+    width: 40%;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    position: relative;
+    height: 0;
+    margin-bottom: 2rem;
+    .images-wrapper{
+      border: 1px solid $blue;
+    }
+    .selected-image{
+      width: 100%;
+      position: relative;
+      border-bottom: 1px solid $blue;
+      .wrapper{
+        padding: 2rem;
+        img{
+          width: 100%;
+        }
+      }
+    }
+    .image-options{
+      display: flex;
+      height: 132px;
+      a{
+        text-indent: -9999px;
+        margin: 1rem;
+        font-size: 1rem;
+        position: relative;
+        display: block;
+        width: 33.3333333%;
+        height: calc(100% - 0rem);
+        background-size: contain;
+        background-position: center;
+        background-repeat: no-repeat;
+        &:hover{
+          transform: scale(1.1);
+          &:before{
+            opacity: .5;
+            position: absolute;
+            top: 0;
+            left: 50%;
+            margin-left: -.5rem;
+            margin-top: -.65rem;
+            content: "";
+            width: 0;
+            height: 0;
+            border-top: 1rem solid $blue;
+            border-left: 10px solid transparent;
+            border-right: 10px solid transparent;
+          }
+        }
+        &.active{
+          pointer-events: none;
+          &:before{
+            position: absolute;
+            top: 0;
+            left: 50%;
+            margin-left: -.5rem;
+            margin-top: -1rem;
+            content: "";
+            width: 0;
+            height: 0;
+            border-top: 1rem solid $blue;
+            border-left: 10px solid transparent;
+            border-right: 10px solid transparent;
+          }
+        }
+      }
+    }
+  }
+  .info{
+    width: 50%;
+    text-align: left;
+    p{
+      line-height: 1.5;
+      margin: 0;
+    }
+    & > p{
+      margin-bottom: 1rem;
+    }
+  }
+  .technical-details{
+    margin: 0 0 2rem;
+    padding: 0;
+    overflow: hidden;
+    background-color: $white;
+    border: 1px solid $blue;
+    padding: 1.5rem;
+    h3{
+      font-size: 1.5rem;
+      color: $white;
+      padding-bottom: 1rem;
+      color: $dark-sky;
+    }
+    .content{
+      max-height: 10rem;
+      box-sizing: initial;
+      overflow: scroll;
+      padding-right: 5rem;
+      padding-bottom: 20px;
+      margin-right: -3rem;
+      margin-bottom: -3rem;
+      p{
+        color: $dark-sky;
+        margin-bottom: .25rem;
+        &:last-of-type{
+          margin-bottom: 1rem;
+        }
+      }
+    }
+    p{
+      font-size: 1rem;
+    }
+  }
+  .purchasing-options{
+    border: 1px solid $blue;
+    background-color: $white;
+    & > header{
+      padding: 1.5rem;
+      background-color: $blue;
+      h3{
+        font-size: 1.5rem;
+        color: $white;
+      }
+    }
+    & > * {
+      padding: 1rem 1.5rem;
+      border-top: 1px solid $blue;
+      font-size: 1.25rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      p{
+        color: $dark-sky;
+      }
+      &.discount{
+        flex-wrap: wrap;
+        header{
+          width: 100%;
+          justify-content: space-between;
+          display: flex;
+          align-items: baseline;
+        }
+      }
+      &.button{
+        color: $white;
+        text-decoration: none;
+        text-transform: uppercase;
+        font-weight: 700;
+        padding: 2rem;
+        background-color: $green;
+        display: block;
+        border: 1px solid darken($green, 15%);
+        border-top: 1px solid $blue;
+        margin: -1px;
+        text-align: center;
+        &:hover{
+          background-color: lighten($green, 10%);
+        }
+      }
+    }
+  }
+}

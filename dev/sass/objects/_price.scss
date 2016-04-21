@@ -1,0 +1,12 @@
+.price{
+  display: inline-block;
+  margin: .25rem 0;
+  color: $green;
+  border: 1px solid $green;
+  padding: .5rem .75rem;
+  transition: .25s all ease;
+  &:hover{
+    background-color: $green;
+    color: $white;
+  }
+}

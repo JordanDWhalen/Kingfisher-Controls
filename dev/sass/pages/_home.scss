@@ -1,3 +1,6 @@
-* {
-  box-sizing: border-box;
+.home {
+  .grid{
+    border: 10px solid $blue;
+    border-top: none;
+  }
 }

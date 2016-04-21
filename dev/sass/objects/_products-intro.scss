@@ -1,0 +1,25 @@
+.products-intro{
+    .controls{
+      width: 100%;
+      display: block;
+      padding: 2rem 0;
+      height: auto;
+      border-top: 1px solid $blue;
+      background-color: $light-sky;
+    }
+    .button{
+      margin: 0;
+    }
+    .lead{
+      padding: 4rem 0 3rem;
+      flex-direction: column;
+    }
+    .wrapper{
+      @extend .container;
+      display: flex;
+      justify-content: space-between;
+    }
+    .form-fields{
+      display: flex;
+    }
+}

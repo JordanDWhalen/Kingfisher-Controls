@@ -27,6 +27,18 @@ a{
       color: $white;
     }
   }
+  &:active{
+    transform: translateY(5px);
+  }
+  &.blue{
+    background-color: $blue;
+    color: $white;
+    text-transform: uppercase;
+    &:hover{
+      background-color: transparent;
+      color: $blue;
+    }
+  }
   &.hollow{
     border: none;
     font-weight: 100;

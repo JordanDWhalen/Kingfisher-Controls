@@ -1,12 +1,22 @@
+.header-wrapper{
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  width: 100%;
+  z-index: 100;
+  transition: .5s all ease;
+}
+
 header.global{
   padding: 1.5rem;
   display: flex;
   justify-content: space-between;
   align-items: flex-end;
-  position: fixed;
-  width: 100%;
-  z-index: 100;
   border-bottom: 1px solid $sky;
+  flex-wrap: wrap;
+  transition: .5s all ease;
+  position: relative;
   .logo{
     a{
       justify-content: center;
@@ -62,6 +72,10 @@ header.global{
       font-size: 1.5rem;
       transition: .125s all ease;
       border-bottom: 1px solid transparent;
+      &.active{
+        font-weight: 700;
+        pointer-events: none;
+      }
       &.icon{
         border: none;
         &:hover{
@@ -88,6 +102,42 @@ header.global{
       color: white;
       text-decoration: none;
       display: block;
+      white-space: nowrap;
+      transition: .25s all ease;
+      &.active{
+        pointer-events: all;
+        background-color: $white;
+        color: $dark-sky;
+      }
+    }
+  }
+  &.has-breadcrumbs{
+    border-bottom: none;
+    flex-wrap: wrap;
+    padding-bottom: 0px;
+    .breadcrumbs{
+      border-top: 1px solid $white;
+      padding: 1rem 2.5rem;
+      margin: 1.5rem -1.5rem 0;
+      width: calc(100% + 3rem);
+      color: $white;
+      .icon-angle-right{
+        color: $white;
+        font-size: 1rem;
+        line-height: 1rem;
+      }
+      a{
+        color: $white;
+        font-size: 1.25rem;
+      }
+      a.active{
+        text-decoration: none;
+        font-weight: 600;
+        pointer-events: none;
+      }
+    }
+    & + main .hero{
+      padding-top: calc(135px + 5rem);
     }
   }
   &.scrolled{
@@ -95,8 +145,36 @@ header.global{
     .logo, .logo small, .logo i, a{
       color: $blue;
     }
+
+    .logo:hover{
+      small, i, a{
+        color:$medium-sky;
+      }
+    }
     aside a{
       border-color: $blue;
     }
+    nav a{
+      &:hover{
+        color:$medium-sky;
+      }
+      &.active{
+        color: desaturate($blue, 100);
+        font-weight: 700;
+      }
+    }
+    .breadcrumbs{
+      border-top: 1px solid $blue;
+      .icon-angle-right{
+        color: $blue;
+      }
+      a{
+        color: $blue;
+      }
+    }
+  }
+  &.overlay-open{
+    border-top: 1px solid $white;
+    background-color: transparentize($dark-sky, .1)!important;
   }
 }
