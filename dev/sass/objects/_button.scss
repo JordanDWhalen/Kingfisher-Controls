@@ -8,6 +8,7 @@ a{
   background-color: $white;
   border: 1px solid $blue;
   transition: $default-transition;
+  white-space: nowrap;
   i{
     color: $blue;
     text-align: center;
