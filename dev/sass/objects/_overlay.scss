@@ -32,15 +32,16 @@
     flex-direction: column;
     pointer-events: none;
     z-index: 1;
-    *{
-      opacity: 0;
-    }
+    opacity: 0;
+    transition: opacity .5s ease 5s, background-color .5s ease 0s;
+    background-color: rgba(41,49,86,0);
     &.active{
+      background-color: rgba(41,49,86,.8);
       background-color: transparentize($dark-sky, .1);
       pointer-events: all;
-      *{
-        opacity: 1;
-      }
+      opacity: 1;
+      transition: .5s all ease;
+      transition-delay: 0s;
     }
   }
   *{

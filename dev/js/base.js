@@ -1,3 +1,5 @@
+// Attempting to create an object for each sliders
+
 // Setting up default variables for usage throughout the site
 var large = 1450,
     medium  = 1000,

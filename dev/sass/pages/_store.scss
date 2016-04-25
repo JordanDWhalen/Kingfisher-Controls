@@ -1,0 +1,20 @@
+.store{
+  .store-intro{
+    .controls{
+      border: 10px solid $blue;
+      border-top: 12px solid $blue;
+      border-bottom: 0px;
+    }
+    & + section{
+      border-top: 1px solid $blue;
+    }
+  }
+    .grid{
+      border: 10px solid $blue;
+      border-top: 1px solid $blue;
+      border-bottom: 0px;
+    }
+    .controls + section{
+      border-top: 1px solid $blue;
+    }
+  }
