@@ -9,11 +9,11 @@
 }
 
 header.global{
-      border-top: 1px solid #FFF;
   padding: 1.5rem;
   display: flex;
   justify-content: space-between;
   align-items: flex-end;
+  border-top: 1px solid $sky;
   border-bottom: 1px solid $sky;
   flex-wrap: wrap;
   transition: .5s all ease;
@@ -143,6 +143,7 @@ header.global{
   }
   &.scrolled{
     border-bottom: 1px solid $blue;
+    border-top: 1px solid $blue;
     .logo, .logo small, .logo i, a{
       color: $blue;
     }

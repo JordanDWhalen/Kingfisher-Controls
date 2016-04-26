@@ -1,9 +1,8 @@
-// Attempting to create an object for each sliders
-
 // Setting up default variables for usage throughout the site
-var large = 1450,
+var huge = 1450,
+    large  = 1250,
     medium  = 1000,
-    small  = 750;
+    small = 750;
 
 
 // Checking what the screen size is, in order to accurately adjust the layout of different items
@@ -16,43 +15,86 @@ function minWidth(width) {
   }
 }
 
-// Utilizing the minWidth() function to determine how to layout the sliders
-function sliderLayout(target) {
-  if( $(target).length ){
-    var instance = $(target).attr("class").split(" ").pop();
-    // Getting the item count so I can properly manipulate the width of the slide wrapper
-    var count = $(target + "." + instance + " " + ".container a").length;
-
-    if ( minWidth(large) ) {
-
-      // If the screen is larger than 1450, we're going to have 5 columns
-      if(count > 5){
-          var number = (count / 5) * 100;
-          $(target + "." + instance + " " + ".wrapper").css("width",  number + "%");
-      } else {
-        $(target + "." + instance + " " + ".wrapper").css("width",  "100%");
+// Setting up slider layout
+function sliderLayout(){
+  var products = $(".product-slider .wrapper a");
+  if ( minWidth(1450) ){
+    // Huge layout
+    console.log(products.parent().is(".slide"));
+    if( products.parent().is(".slide") ) {
+      products.unwrap();
+      for( var i = 0; i < products.length; i+=5 ) {
+        products.slice(i, i+5).wrapAll('<div class="slide"></div>');
       }
-
-    } else if ( minWidth(medium) ){
-      // If the screen is smaller than 900, but larger than 800 we're going to have 3 columns
-      if( count > 3 ){
-        var number = (count / 3) * 100;
-        $(target + "." + instance + " " + ".wrapper").css("width",  number + "%");
-      } else {
-
+    } else {
+      for( var i = 0; i < products.length; i+=5 ) {
+        products.slice(i, i+5).wrapAll('<div class="slide"></div>');
       }
+    }
+  } else if(minWidth(1250)) {
+    // Large layout
+    if( products.parent().is(".slide") ) {
+      console.log("1250!");
+      products.unwrap();
+      for( var i = 0; i < products.length; i+=4 ) {
+        products.slice(i, i+4).wrapAll('<div class="slide"></div>');
+      }
+    } else {
+      for( var i = 0; i < products.length; i+=4 ) {
+        products.slice(i, i+4).wrapAll('<div class="slide"></div>');
+      }
+    }
+  }  else if (minWidth(1000)){
+    // Medium layout
+    if( products.parent().is(".slide") ) {
+      products.unwrap();
+      console.log("1000!");
+      for( var i = 0; i < products.length; i+=3 ) {
+        products.slice(i, i+3).wrapAll('<div class="slide"></div>');
+      }
+    } else {
+      for( var i = 0; i < products.length; i+=3 ) {
+        products.slice(i, i+3).wrapAll('<div class="slide"></div>');
+      }
+    }
+  } else if ( minWidth(750)){
+    // Small Layout
+    if( products.parent().is(".slide") ) {
+      products.unwrap();
+      console.log("750!");
+      for( var i = 0; i < products.length; i+=2 ) {
+        products.slice(i, i+2).wrapAll('<div class="slide"></div>');
+      }
+    } else {
+      for( var i = 0; i < products.length; i+=2 ) {
+        products.slice(i, i+2).wrapAll('<div class="slide"></div>');
+      }
+    }
 
-    } else if ( minWidth(small) ){
-      // If the screen is smaller than 750, two columns
-      var number = count * 50;
-      $(target + "." + instance + " " + ".wrapper").css("width",  number + "%");
-
-    } else if ( minWidth(500) ){
-      // Otherwise, one column
-      var number = count * 100;
-      $(target + "." + instance + " " + ".wrapper").css("width",  number + "%");
+  } else {
+    // Mobile layout
+    products.unwrap();
+    if( products.parent().is(".slide") ) {
+      products.unwrap();
+      for( var i = 0; i < products.length; i+=1 ) {
+        products.slice(i, i+1).wrapAll('<div class="slide"></div>');
+      }
+    } else {
+      for( var i = 0; i < products.length; i+=1 ) {
+        products.slice(i, i+1).wrapAll('<div class="slide"></div>');
+      }
     }
   }
+}
+  //
+  //
+
+// Attempting to create an object for each sliders
+function createSliderObject() {
+  // Creating an array of all matching elements, and then adding a class for differentiation.
+  $(".product-slider").each( function(index, value) {
+    $(this).addClass("" + index);
+  });
 }
 
 // Causing the header navigation background color to fade in as you scroll
@@ -104,20 +146,16 @@ function overlayClose(overlayType){
 /***************************************
   Functions to run on load, resize, and scroll
 ***************************************/
-var i = 0;
-$(".product-slider.detailed").each( function(){
-  sliderLayout(".product-slider.detailed" + "." + i);
-  i++;
-})
 
-sliderLayout(".product-slider.detailed");
 navigationFade("header.global", "255, 255, 255");
 flexImagefix(".product-info .images .selected-image .wrapper img");
 
+sliderLayout();
+createSliderObject();
 overlayLoad();
 
 $(window).resize( function() {
-  sliderLayout(".product-slider");
+  sliderLayout();
   flexImagefix(".product-info .images .selected-image .wrapper img");
 });
 
