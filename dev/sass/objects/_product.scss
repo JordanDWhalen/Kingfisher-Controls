@@ -60,6 +60,7 @@
     font-weight: 600;
   }
   &:hover{
+      transform: scale(1.05);
     .content{
       background-color: $blue;
       *{

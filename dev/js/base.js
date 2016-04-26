@@ -20,7 +20,6 @@ function sliderLayout(){
   var products = $(".product-slider .wrapper a");
   if ( minWidth(1450) ){
     // Huge layout
-    console.log(products.parent().is(".slide"));
     if( products.parent().is(".slide") ) {
       products.unwrap();
       for( var i = 0; i < products.length; i+=5 ) {
@@ -34,7 +33,6 @@ function sliderLayout(){
   } else if(minWidth(1250)) {
     // Large layout
     if( products.parent().is(".slide") ) {
-      console.log("1250!");
       products.unwrap();
       for( var i = 0; i < products.length; i+=4 ) {
         products.slice(i, i+4).wrapAll('<div class="slide"></div>');
@@ -48,7 +46,6 @@ function sliderLayout(){
     // Medium layout
     if( products.parent().is(".slide") ) {
       products.unwrap();
-      console.log("1000!");
       for( var i = 0; i < products.length; i+=3 ) {
         products.slice(i, i+3).wrapAll('<div class="slide"></div>');
       }
@@ -61,7 +58,6 @@ function sliderLayout(){
     // Small Layout
     if( products.parent().is(".slide") ) {
       products.unwrap();
-      console.log("750!");
       for( var i = 0; i < products.length; i+=2 ) {
         products.slice(i, i+2).wrapAll('<div class="slide"></div>');
       }
@@ -94,6 +90,7 @@ function createSliderObject() {
   // Creating an array of all matching elements, and then adding a class for differentiation.
   $(".product-slider").each( function(index, value) {
     $(this).addClass("" + index);
+    $(this).children().children(".slide-wrapper").children().children().first().addClass("active");
   });
 }
 

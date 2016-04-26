@@ -3,6 +3,11 @@
   border-top: 1px solid $blue;
   & > .container{
     overflow: visible;
+    & > .wrapper{
+      .slide{
+        opacity: 1;
+      }
+    }
     & > .wrapper, & > .wrapper .wrapper{
       margin: 0 -1rem;
       width: auto;
@@ -22,6 +27,8 @@
       }
     }
   }
+
+
 
   .grid-item{
     position: relative;

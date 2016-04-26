@@ -4,8 +4,19 @@
   border: 10px solid $blue;
   border-top: 12px solid $blue;
   border-bottom: 1px solid $blue;
+  overflow: hidden;
   & + .product-slider{
     border-top: none
+  }
+
+  .slide{
+    min-width: 100%;
+    display: flex;
+    justify-content: space-between;
+    opacity: .5;
+    &.active{
+      opacity: 1;
+    }
   }
 
   .lead{
@@ -14,10 +25,12 @@
 
   .slide-wrapper{
     margin: 0 -1rem;
+    width: auto;
   }
 
   .container{
       @extend .container;
+      overflow:visible;
   }
 
   .controls{
