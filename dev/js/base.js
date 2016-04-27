@@ -17,7 +17,10 @@ function minWidth(width) {
 
 // Setting up slider layout
 function sliderLayout(){
+  // Adding a unique class to each slider for differentiation of
+
   var products = $(".product-slider .wrapper a");
+
   if ( minWidth(1450) ){
     // Huge layout
     if( products.parent().is(".slide") ) {
@@ -81,17 +84,18 @@ function sliderLayout(){
       }
     }
   }
-}
-  //
-  //
 
-// Attempting to create an object for each sliders
-function createSliderObject() {
-  // Creating an array of all matching elements, and then adding a class for differentiation.
+
+  // Adding active class to first slide, and unique index class to each slider.
   $(".product-slider").each( function(index, value) {
     $(this).addClass("" + index);
     $(this).children().children(".slide-wrapper").children().children().first().addClass("active");
+    $(this).children().children(".slide-wrapper").attr("data-shift-amount", "0");
   });
+}
+
+function sliderScroll(){
+  console.log($(".product-slider").scrollLeft());
 }
 
 // Causing the header navigation background color to fade in as you scroll
@@ -148,7 +152,6 @@ navigationFade("header.global", "255, 255, 255");
 flexImagefix(".product-info .images .selected-image .wrapper img");
 
 sliderLayout();
-createSliderObject();
 overlayLoad();
 
 $(window).resize( function() {
@@ -167,8 +170,9 @@ $(window).scroll( function() {
 
 // Setting up the functionality for the slide down view of the request a quote, and help sections.
 // This needs to be disabled for 50ms in order for JS to have time to properly calculate the height of these sections
-setTimeout(function(){
-  $("header.global aside a").click( function(){
+
+$("header.global aside a").click( function(e){
+  e.preventDefault();
     var buttonText = $(this).text();
     var overlayType = $(this).attr("class").split(" ").pop(0);
     $(".overlay").toggleClass("open");
@@ -181,5 +185,27 @@ setTimeout(function(){
       overlayClose(overlayType);
       $(this).text($(this).attr("data-text"));
     }
-  });
-}, 50);
+});
+
+$(".product-slider .button").click(function(){
+  var type = $(this).attr("class").split(" ").pop(),
+      currentSlider = $(this).parent().parent().parent().parent(),
+      currentWrapper = $(this).parent().parent().parent().children(".slide-wrapper"),
+      shiftAmount = parseInt(currentWrapper.children().children(".slide").first().width(), 10),
+      currentAmount = parseInt(currentWrapper.attr("data-shift-amount"));
+
+  if(type === "left"){
+    currentAmount = currentAmount - shiftAmount;
+    $(currentWrapper).velocity({ translateX: currentAmount }, { duration: 500, easing: "swing"});
+    $(currentWrapper).attr("data-shift-amount", currentAmount);
+  } else {
+    currentAmount = currentAmount + shiftAmount;
+    $(currentWrapper).velocity({ translateX: currentAmount }, { duration: 500, easing: "swing"});
+    $(currentWrapper).attr("data-shift-amount", currentAmount);
+  }
+
+  setTimeout( function(){
+    console.log(currentAmount);
+  }, 500);
+
+});
