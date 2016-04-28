@@ -18,6 +18,17 @@
   }
   .button{
     margin-left: 1rem;
+    &.disabled{
+      pointer-events: none;
+      opacity: .5;
+      &:hover{
+        background-color: $white;
+        border-color: $blue;
+        i{
+          color: $blue;
+        }
+      }
+    }
   }
   .form-fields{
     display: flex;

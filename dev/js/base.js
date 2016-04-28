@@ -1,8 +1,8 @@
 // Setting up default variables for usage throughout the site
 var huge = 1450,
-    large  = 1250,
-    medium  = 1000,
-    small = 750;
+large  = 1250,
+medium  = 1000,
+small = 750;
 
 
 // Checking what the screen size is, in order to accurately adjust the layout of different items
@@ -85,7 +85,6 @@ function sliderLayout(){
     }
   }
 
-
   // Adding active class to first slide, and unique index class to each slider.
   $(".product-slider").each( function(index, value) {
     $(this).addClass("" + index);
@@ -119,7 +118,7 @@ function flexImagefix(target){
 function overlayLoad(){
   setTimeout(function(){
     var helpHeight    = $(".overlay .help").innerHeight(),
-        requestHeight = $(".overlay .request").innerHeight();
+    requestHeight = $(".overlay .request").innerHeight();
 
     $(".overlay .help").css("top", helpHeight * -1);
     $(".overlay .request").css("top", requestHeight * -1);
@@ -145,7 +144,7 @@ function overlayClose(overlayType){
 }
 
 /***************************************
-  Functions to run on load, resize, and scroll
+Functions to run on load, resize, and scroll
 ***************************************/
 
 navigationFade("header.global", "255, 255, 255");
@@ -165,7 +164,7 @@ $(window).scroll( function() {
 
 
 /***************************************
-  Interactive JS
+Interactive JS
 ***************************************/
 
 // Setting up the functionality for the slide down view of the request a quote, and help sections.
@@ -173,35 +172,53 @@ $(window).scroll( function() {
 
 $("header.global aside a").click( function(e){
   e.preventDefault();
-    var buttonText = $(this).text();
-    var overlayType = $(this).attr("class").split(" ").pop(0);
-    $(".overlay").toggleClass("open");
-    $(this).toggleClass("active");
-    $(this).attr("data-text", buttonText);
-    if($(".overlay").hasClass("open")){
-      overlayOpen(overlayType);
-      $(this).text("Close Overlay");
-    } else {
-      overlayClose(overlayType);
-      $(this).text($(this).attr("data-text"));
-    }
+  var buttonText = $(this).text();
+  var overlayType = $(this).attr("class").split(" ").pop(0);
+  $(".overlay").toggleClass("open");
+  $(this).toggleClass("active");
+  $(this).attr("data-text", buttonText);
+  if($(".overlay").hasClass("open")){
+    overlayOpen(overlayType);
+    $(this).text("Close Overlay");
+  } else {
+    overlayClose(overlayType);
+    $(this).text($(this).attr("data-text"));
+  }
 });
 
 $(".product-slider .button").click(function(){
   var type = $(this).attr("class").split(" ").pop(),
-      currentSlider = $(this).parent().parent().parent().parent(),
-      currentWrapper = $(this).parent().parent().parent().children(".slide-wrapper"),
-      shiftAmount = parseInt(currentWrapper.children().children(".slide").first().width(), 10),
-      currentAmount = parseInt(currentWrapper.attr("data-shift-amount"));
+  currentSlider = $(this).parent().parent().parent().parent(),
+  currentWrapper = $(this).parent().parent().parent().children(".slide-wrapper"),
+  currentActive = currentWrapper.children().children(".active"),
+  shiftAmount = parseInt(currentWrapper.children().children(".slide").first().width(), 10),
+  potentialShift = (parseInt(currentWrapper.children().children(".slide").length, 10) - 1) * shiftAmount * -1,
+  currentAmount = parseInt(currentWrapper.attr("data-shift-amount"));
 
-  if(type === "left"){
+  if(type === "right"){
     currentAmount = currentAmount - shiftAmount;
     $(currentWrapper).velocity({ translateX: currentAmount }, { duration: 500, easing: "swing"});
     $(currentWrapper).attr("data-shift-amount", currentAmount);
+    $(currentActive).next().addClass("active");
+    $(currentActive).removeClass("active");
   } else {
     currentAmount = currentAmount + shiftAmount;
     $(currentWrapper).velocity({ translateX: currentAmount }, { duration: 500, easing: "swing"});
     $(currentWrapper).attr("data-shift-amount", currentAmount);
+    $(currentActive).prev().addClass("active");
+    $(currentActive).removeClass("active");
+  }
+
+  console.log(currentAmount + " = " + potentialShift);
+
+  if(currentAmount === potentialShift){
+    console.log("MAX!");
+    $(this).parent().children(".right").addClass("disabled");
+  } else if( currentAmount === 0 ) {
+    console.log("MIN!")
+    $(this).parent().children(".left").addClass("disabled");
+  } else {
+    $(this).parent().children().removeClass("disabled");
   }
 
   setTimeout( function(){
