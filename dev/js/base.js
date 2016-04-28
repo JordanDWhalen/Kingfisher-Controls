@@ -84,31 +84,44 @@ function sliderLayout(){
       }
     }
   }
+}
 
-  // Adding active class to first slide, and unique index class to each slider.
+// Setting some defaults for each slider
+function sliderDefaults(){
   $(".product-slider").each( function(index, value) {
     $(this).addClass("" + index);
     $(this).children().children(".slide-wrapper").children().children().first().addClass("active");
+    $(this).children().children(".lead").children().children(".left").addClass("disabled");
     $(this).children().children(".slide-wrapper").attr("data-shift-amount", "0");
   });
 }
 
-function sliderScroll(){
-  console.log($(".product-slider").scrollLeft());
+function sliderActiveSet(){
+  $(".product-slider .slide-wrapper").each( function(){
+    var slideAmount = $(this).attr("data-shift-amount"),
+        activeSlide = (slideAmount * -1 / 100) + 1,
+        slideNumber = $(this).children().length;
+
+    $(this).children().children(".slide:nth-child(" + activeSlide + ")").addClass("active");
+
+    console.log(".slide:nth-child(" + activeSlide + ")");
+
+  });
 }
 
 // Causing the header navigation background color to fade in as you scroll
-function navigationFade(target, rgb) {
+function navigationFade() {
+  console.log("test");
   var a = $(window).scrollTop() / 100;
+  console.log(a);
   if(a < .75){
-    $(target).css("background-color", "rgba(" + rgb + "," + a + ")");
     $("header.global").removeClass("scrolled");
+    $(".overlay").removeClass("scrolled");
   } else {
-    $(target).css("background-color", "rgba(" + rgb + "," + ".8" + ")");
     $("header.global").addClass("scrolled");
+    $(".overlay").addClass("scrolled");
   }
 }
-
 // Setting up a function to fix image sizes for the Product Page
 function flexImagefix(target){
   var square = $(target).width();
@@ -128,7 +141,7 @@ function overlayLoad(){
 function overlayOpen(overlayType){
   var overlayOffset = $("." + overlayType).innerHeight();
   var paddingIncrease = parseInt($(".hero").css("padding-top"), 10) + overlayOffset;
-  $(".overlay ." + overlayType).addClass("active");
+  $(".overlay ." + overlayType).velocity({ opacity: 1 });
   $(".header-wrapper").velocity({ paddingTop: overlayOffset }, { easing: "linear"});
   $("header.global").addClass("overlay-open");
   $(".hero, .product-hero").velocity({paddingTop: paddingIncrease}, { easing: "linear"});
@@ -137,29 +150,32 @@ function overlayOpen(overlayType){
 function overlayClose(overlayType){
   var overlayOffset = $("." + overlayType).innerHeight();
   var paddingDecrease = parseInt($(".hero").css("padding-top"), 10) - overlayOffset;
-  $(".overlay ." + overlayType).removeClass("active");
+  $(".overlay ." + overlayType).toggleClass("inactive");
   $(".header-wrapper").velocity({ paddingTop: 0 }, { easing: "linear"});
   $("header.global").removeClass("overlay-open");
   $(".hero").velocity({paddingTop: paddingDecrease}, { easing: "linear"});
+
 }
 
 /***************************************
 Functions to run on load, resize, and scroll
 ***************************************/
 
-navigationFade("header.global", "255, 255, 255");
+navigationFade();
 flexImagefix(".product-info .images .selected-image .wrapper img");
 
 sliderLayout();
+sliderDefaults();
 overlayLoad();
 
 $(window).resize( function() {
   sliderLayout();
   flexImagefix(".product-info .images .selected-image .wrapper img");
+  sliderActiveSet();
 });
 
 $(window).scroll( function() {
-  navigationFade("header.global", "255, 255, 255");
+  navigationFade();
 });
 
 
@@ -172,15 +188,17 @@ Interactive JS
 
 $("header.global aside a").click( function(e){
   e.preventDefault();
-  var buttonText = $(this).text();
-  var overlayType = $(this).attr("class").split(" ").pop(0);
+  var buttonText = $(this).text(),
+      overlayType = $(this).attr("class").split(" ")[2];
   $(".overlay").toggleClass("open");
   $(this).toggleClass("active");
   $(this).attr("data-text", buttonText);
   if($(".overlay").hasClass("open")){
+    console.log(overlayType);
     overlayOpen(overlayType);
     $(this).text("Close Overlay");
   } else {
+    console.log(overlayType)
     overlayClose(overlayType);
     $(this).text($(this).attr("data-text"));
   }
@@ -190,26 +208,40 @@ $(".product-slider .button").click(function(){
   var type = $(this).attr("class").split(" ").pop(),
   currentSlider = $(this).parent().parent().parent().parent(),
   currentWrapper = $(this).parent().parent().parent().children(".slide-wrapper"),
-  currentActive = currentWrapper.children().children(".active"),
-  shiftAmount = parseInt(currentWrapper.children().children(".slide").first().width(), 10),
+  currentActiveSlide = currentWrapper.children().children(".active"),
+  shiftAmount = 100,
   potentialShift = (parseInt(currentWrapper.children().children(".slide").length, 10) - 1) * shiftAmount * -1,
-  currentAmount = parseInt(currentWrapper.attr("data-shift-amount"));
+  currentAmount = parseInt(currentWrapper.attr("data-shift-amount"), 0);
 
   if(type === "right"){
     currentAmount = currentAmount - shiftAmount;
-    $(currentWrapper).velocity({ translateX: currentAmount }, { duration: 500, easing: "swing"});
+
+    if(currentAmount === potentialShift){
+      $(this).parent().children(".right").addClass("disabled");
+    } else {
+      $(this).parent().children(".right").removeClass("disabled");
+    }
+
+    $(currentWrapper).velocity({ translateX: currentAmount + "%" }, { duration: 500, easing: "swing"});
     $(currentWrapper).attr("data-shift-amount", currentAmount);
-    $(currentActive).next().addClass("active");
-    $(currentActive).removeClass("active");
+    $(currentActiveSlide).next().addClass("active");
+    $(currentActiveSlide).removeClass("active");
+
   } else {
     currentAmount = currentAmount + shiftAmount;
-    $(currentWrapper).velocity({ translateX: currentAmount }, { duration: 500, easing: "swing"});
-    $(currentWrapper).attr("data-shift-amount", currentAmount);
-    $(currentActive).prev().addClass("active");
-    $(currentActive).removeClass("active");
-  }
 
-  console.log(currentAmount + " = " + potentialShift);
+    if( currentAmount === 0 ) {
+      $(this).parent().children(".left").addClass("disabled");
+    }  else {
+      $(this).parent().children(".left").removeClass("disabled");
+    }
+
+    $(currentWrapper).velocity({ translateX: currentAmount + "%" }, { duration: 500, easing: "swing"});
+    $(currentWrapper).attr("data-shift-amount", currentAmount);
+    $(currentActiveSlide).prev().addClass("active");
+    $(currentActiveSlide).removeClass("active");
+
+  }
 
   if(currentAmount === potentialShift){
     console.log("MAX!");
@@ -220,9 +252,5 @@ $(".product-slider .button").click(function(){
   } else {
     $(this).parent().children().removeClass("disabled");
   }
-
-  setTimeout( function(){
-    console.log(currentAmount);
-  }, 500);
 
 });

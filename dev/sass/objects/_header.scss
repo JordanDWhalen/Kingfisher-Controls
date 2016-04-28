@@ -142,6 +142,7 @@ header.global{
     }
   }
   &.scrolled{
+    background-color: transparentize($white, .2);
     border-bottom: 1px solid $blue;
     border-top: 1px solid $blue;
     .logo, .logo small, .logo i, a{
@@ -175,8 +176,14 @@ header.global{
       }
     }
   }
-  &.overlay-open{
+  &.scrolled.overlay-open{
     border-top: 1px solid $white;
     background-color: transparentize($dark-sky, .1)!important;
+    *{
+      color: $white;
+      small{
+        color: $white;
+      }
+    }
   }
 }
