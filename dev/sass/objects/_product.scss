@@ -4,13 +4,20 @@
   position: relative;
   text-decoration: none;
   margin: 0 1rem;
-  width: calc(20% - 2rem);
+  width: calc(25% - 2rem);
   transition: .25s all ease;
-  @include breakpoint(1450px) {
-    width: calc(33.33333333% - 2rem);
+  @include breakpoint(1215px) {
+    width: calc(33.33333333% - 1rem);
+    margin: 0 .5rem;
   }
   @include breakpoint(1000px) {
     width: calc(50% - 2rem);
+  }
+  @include breakpoint(815px) {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    margin: 0 0 1rem;
   }
   .img-container{
     display: block;
@@ -19,6 +26,12 @@
     padding: 2rem;
     @include breakpoint( 1450px) {
       height: 300px;
+    }
+    @include breakpoint(1215px) {
+      height: 150px;
+    }
+    @include breakpoint(815px) {
+      width: 50%;
     }
     .img{
       position: relative;
@@ -44,6 +57,12 @@
     background-color: $light-sky;
     padding: 2rem;
     transition: .25s all ease;
+    @include breakpoint(1215px) {
+      padding: 1rem;
+    }
+    @include breakpoint(815px) {
+      border: none;
+    }
     * + *{
       display: block;
       margin-top: .5rem;

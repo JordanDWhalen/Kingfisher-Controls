@@ -11,6 +11,13 @@
   overflow: hidden;
   text-align: center;
   transition: .5s all ease;
+  @include breakpoint(1000px) {
+    padding: 100px 30px 50px;
+    min-height: 500px;
+  }
+  @include breakpoint(650px) {
+
+  }
   &.bw{
     background-color: transparent;
     .bg{
@@ -35,6 +42,12 @@
     text-transform: uppercase;
     position: relative;
     z-index: 1;
+    @include breakpoint(1000px) {
+      font-size: 10vw;
+    }
+    @include breakpoint(650px) {
+      font-size: 15vw;
+    }
   }
   p{
     font-weight: 100;
@@ -44,6 +57,10 @@
     font-family: $fonts;
     position: relative;
     z-index: 1;
+    @include breakpoint(1000px) {
+      font-size: 1.5rem;
+      margin: 1rem 0;
+    }
   }
   a{
     font-size: 2rem;
@@ -67,7 +84,8 @@
     filter: contrast(2) grayscale(1) brightness(.8);
     transition: .5s all ease;
     background-position: center;
-    background-size: 120%;
+    background-repeat: no-repeat;
+    background-size: cover;
   }
   .hollow{
     font-size: 1.25rem;

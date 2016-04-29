@@ -1,10 +1,22 @@
 .product-slider{
   background-color: $white;
-  padding: 5rem 1rem;
+  padding: 5rem;
   border: 10px solid $blue;
   border-top: 12px solid $blue;
   border-bottom: 1px solid $blue;
   overflow: hidden;
+  @include breakpoint(1015px) {
+    padding: 2rem 3rem;
+  }
+  @include breakpoint(815px) {
+    padding: 3rem 2rem;
+    border: 5px solid $blue;
+  }
+
+  @include breakpoint(815px) {
+    padding: 3rem 1.25rem;
+  }
+
   & + .product-slider{
     border-top: none
   }
@@ -15,6 +27,10 @@
     justify-content: flex-start;
     opacity: .5;
     transition: .5s opacity ease;
+    @include breakpoint(815px) {
+      flex-direction: column;
+      padding: .5rem;
+    }
     &.active{
       opacity: 1;
     }
@@ -23,14 +39,12 @@
     }
   }
 
-  .lead{
-    margin: 0 0 2rem;
-    align-items: flex-end;
-  }
-
   .slide-wrapper{
     margin: 0 -1rem;
     width: auto;
+    @include breakpoint(1215px) {
+      padding: 0 .5rem;
+    }
     &.line{
       transition: .5s all ease;
     }
@@ -44,9 +58,6 @@
   .controls{
     display: inline-flex;
     height: 50px;
-    .button{
-      margin-left: 1rem;
-    }
   }
 
   .wrapper{
@@ -62,6 +73,15 @@
     .slide{
       opacity: 1;
       margin-bottom: 2rem;
+      @include breakpoint(1215px) {
+        margin-bottom: 1rem;
+      }
+      @include breakpoint(815px) {
+        margin-bottom: 0;
+        .product:last-of-type{
+          margin-bottom: 0;
+        }
+      }
     }
   }
 

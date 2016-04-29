@@ -476,6 +476,7 @@ $(".product-slider .product").click( function(e){
 })
 
 
-$(".toggle").click( function() {
+$(".toggle").click( function(e) {
+  e.preventDefault();
   $(".mobile header.global").toggleClass("toggle-open");
 });

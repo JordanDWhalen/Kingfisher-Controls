@@ -5,6 +5,12 @@
   background-color: $blue;
   background-image: linear-gradient($blue, $light-sky);
   padding: 7.5rem;
+  @include breakpoint(815px) {
+    padding: 3rem;
+    .options{
+      margin: 2rem 0;
+    }
+  }
   *{
     color: $white;
     text-align: center;

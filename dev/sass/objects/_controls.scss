@@ -1,6 +1,18 @@
 .controls{
   display: inline-flex;
   height: 50px;
+  @include breakpoint(815px) {
+    margin-top: 1rem;
+    justify-content: space-between;
+    width: 100%;
+  }
+  .arrows{
+    display: inline-flex;
+    .button{
+      margin-right: 1rem;
+    }
+  }
+
   h3{
     font-size: 2rem;
     line-height: 3rem;
@@ -28,7 +40,6 @@
     }
   }
   .button{
-    margin-left: 1rem;
     transition: .5s opacity ease;
     &.view-all{
       width: 120px;

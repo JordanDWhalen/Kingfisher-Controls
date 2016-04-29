@@ -19,7 +19,12 @@
         align-items: center;
         border: 1px solid $white;
         padding: 1rem;
-
+        &.scrolled{
+          border:1px solid $blue;
+        }
+        &.toggle-open{
+          border:1px solid $white;
+        }
       }
       .logo{
         a{
