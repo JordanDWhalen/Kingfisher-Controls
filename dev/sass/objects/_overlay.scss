@@ -37,6 +37,9 @@
     *{
       transition: .5s all ease;
     }
+    &.active{
+      opacity: 1;
+    }
   }
 
   &.scrolled{

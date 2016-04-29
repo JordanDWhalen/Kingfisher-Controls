@@ -15,105 +15,113 @@ function minWidth(width) {
   }
 }
 
-// Setting up slider layout
-function sliderLayout(){
-  // Adding a unique class to each slider for differentiation of
-
-  var products = $(".product-slider .wrapper a");
-
-  if ( minWidth(1450) ){
-    // Huge layout
-    if( products.parent().is(".slide") ) {
-      products.unwrap();
-      for( var i = 0; i < products.length; i+=5 ) {
-        products.slice(i, i+5).wrapAll('<div class="slide"></div>');
-      }
-    } else {
-      for( var i = 0; i < products.length; i+=5 ) {
-        products.slice(i, i+5).wrapAll('<div class="slide"></div>');
-      }
-    }
-  } else if(minWidth(1250)) {
-    // Large layout
-    if( products.parent().is(".slide") ) {
-      products.unwrap();
-      for( var i = 0; i < products.length; i+=4 ) {
-        products.slice(i, i+4).wrapAll('<div class="slide"></div>');
-      }
-    } else {
-      for( var i = 0; i < products.length; i+=4 ) {
-        products.slice(i, i+4).wrapAll('<div class="slide"></div>');
-      }
-    }
-  }  else if (minWidth(1000)){
-    // Medium layout
-    if( products.parent().is(".slide") ) {
-      products.unwrap();
-      for( var i = 0; i < products.length; i+=3 ) {
-        products.slice(i, i+3).wrapAll('<div class="slide"></div>');
-      }
-    } else {
-      for( var i = 0; i < products.length; i+=3 ) {
-        products.slice(i, i+3).wrapAll('<div class="slide"></div>');
-      }
-    }
-  } else if ( minWidth(750)){
-    // Small Layout
-    if( products.parent().is(".slide") ) {
-      products.unwrap();
-      for( var i = 0; i < products.length; i+=2 ) {
-        products.slice(i, i+2).wrapAll('<div class="slide"></div>');
-      }
-    } else {
-      for( var i = 0; i < products.length; i+=2 ) {
-        products.slice(i, i+2).wrapAll('<div class="slide"></div>');
-      }
-    }
-
+function maxWidth(width) {
+  var screenWidth =  $(window).width();
+  if ( screenWidth <= width ) {
+    return true;
   } else {
-    // Mobile layout
-    products.unwrap();
-    if( products.parent().is(".slide") ) {
-      products.unwrap();
-      for( var i = 0; i < products.length; i+=1 ) {
-        products.slice(i, i+1).wrapAll('<div class="slide"></div>');
-      }
-    } else {
-      for( var i = 0; i < products.length; i+=1 ) {
-        products.slice(i, i+1).wrapAll('<div class="slide"></div>');
-      }
-    }
+    return false;
   }
 }
 
-// Setting some defaults for each slider
-function sliderDefaults(){
-  $(".product-slider").each( function(index, value) {
+// Setting up slider layout
+function sliderLayout(){
+  // Adding a unique class to each slider for differentiation of
+  $(".product-slider").each( function( index, value ) {
     $(this).addClass("" + index);
-    $(this).children().children(".slide-wrapper").children().children().first().addClass("active");
-    $(this).children().children(".lead").children().children(".left").addClass("disabled");
-    $(this).children().children(".slide-wrapper").attr("data-shift-amount", "0");
+    var sliderNumber = $(this).attr("class").split(" ").pop(),
+    products = $(".product-slider." + sliderNumber + " .wrapper a");
+
+    if( products.parent().is(".slide") ) {
+
+      products.unwrap();
+
+      for( var i = 0; i < products.length; i+=4 ) {
+        products.slice(i, i+4).wrapAll('<div class="slide"></div>');
+      }
+
+    } else {
+
+      for( var i = 0; i < products.length; i+=4 ) {
+        products.slice(i, i+4).wrapAll('<div class="slide"></div>');
+      }
+
+    }
+
+
+    if ( minWidth(1450) ) {
+      if( products.parent().is(".slide") ) {
+        products.unwrap();
+        for( var i = 0; i < products.length; i+=5 ) {
+          products.slice(i, i+5).wrapAll('<div class="slide"></div>');
+        }
+      } else {
+        for( var i = 0; i < products.length; i+=5 ) {
+          products.slice(i, i+5).wrapAll('<div class="slide"></div>');
+        }
+      }
+    }
+
+    if ( minWidth(800) && maxWidth(1200) ) {
+      if( products.parent().is(".slide") ) {
+        products.unwrap();
+        for( var i = 0; i < products.length; i+=3 ) {
+          products.slice(i, i+3).wrapAll('<div class="slide"></div>');
+        }
+      } else {
+        for( var i = 0; i < products.length; i+=3 ) {
+          products.slice(i, i+3).wrapAll('<div class="slide"></div>');
+        }
+      }
+    }
   });
 }
 
-function sliderActiveSet(){
+// Setting some defaults for each slider
+function sliderDefaults() {
+  $(".product-slider").each( function(index, value) {
+    $(this).children().children(".slide-wrapper").children().children().first().addClass("active");
+    $(this).children().children(".lead").children().children(".left").addClass("disabled");
+    $(this).children().children(".slide-wrapper").attr("data-shift-amount", "0");
+
+    var slideNumber = $(this).children().children(".slide-wrapper").children().children(".slide").length;
+
+    if(slideNumber <= 1){
+      $(this).children().children(".lead").children().children(".right").addClass("disabled");
+    }
+  });
+}
+
+function sliderActiveSet() {
   $(".product-slider .slide-wrapper").each( function(){
     var slideAmount = $(this).attr("data-shift-amount"),
-        activeSlide = (slideAmount * -1 / 100) + 1,
-        slideNumber = $(this).children().length;
+    activeSlide = (slideAmount * -1 / 100) + 1,
+    slideNumber = $(this).children().length;
 
     $(this).children().children(".slide:nth-child(" + activeSlide + ")").addClass("active");
 
-    console.log(".slide:nth-child(" + activeSlide + ")");
-
   });
+}
+
+function disabledButtons(currentSliderClass, currentAmount, potentialShift) {
+  if(currentAmount === potentialShift){
+    $(".product-slider." + currentSliderClass + " .right").addClass("disabled");
+    if ( currentAmount !== 0 ){
+      $(".product-slider." + currentSliderClass + " .left").removeClass("disabled");
+    }
+  } else if( currentAmount === 0 ) {
+    $(".product-slider." + currentSliderClass + " .left").addClass("disabled");
+    if ( currentAmount !== potentialShift ){
+      $(".product-slider." + currentSliderClass + " .right").removeClass("disabled");
+    }
+  } else {
+    $(".product-slider." + currentSliderClass + " .button").removeClass("disabled");
+  }
 }
 
 // Causing the header navigation background color to fade in as you scroll
 function navigationFade() {
-  console.log("test");
   var a = $(window).scrollTop() / 100;
-  console.log(a);
   if(a < .75){
     $("header.global").removeClass("scrolled");
     $(".overlay").removeClass("scrolled");
@@ -122,6 +130,7 @@ function navigationFade() {
     $(".overlay").addClass("scrolled");
   }
 }
+
 // Setting up a function to fix image sizes for the Product Page
 function flexImagefix(target){
   var square = $(target).width();
@@ -141,7 +150,6 @@ function overlayLoad(){
 function overlayOpen(overlayType){
   var overlayOffset = $("." + overlayType).innerHeight();
   var paddingIncrease = parseInt($(".hero").css("padding-top"), 10) + overlayOffset;
-  $(".overlay ." + overlayType).velocity({ opacity: 1 });
   $(".header-wrapper").velocity({ paddingTop: overlayOffset }, { easing: "linear"});
   $("header.global").addClass("overlay-open");
   $(".hero, .product-hero").velocity({paddingTop: paddingIncrease}, { easing: "linear"});
@@ -149,8 +157,8 @@ function overlayOpen(overlayType){
 
 function overlayClose(overlayType){
   var overlayOffset = $("." + overlayType).innerHeight();
+  console.log(overlayType + " : " + overlayOffset);
   var paddingDecrease = parseInt($(".hero").css("padding-top"), 10) - overlayOffset;
-  $(".overlay ." + overlayType).toggleClass("inactive");
   $(".header-wrapper").velocity({ paddingTop: 0 }, { easing: "linear"});
   $("header.global").removeClass("overlay-open");
   $(".hero").velocity({paddingTop: paddingDecrease}, { easing: "linear"});
@@ -186,28 +194,81 @@ Interactive JS
 // Setting up the functionality for the slide down view of the request a quote, and help sections.
 // This needs to be disabled for 50ms in order for JS to have time to properly calculate the height of these sections
 
+var i = 0;
 $("header.global aside a").click( function(e){
   e.preventDefault();
-  var buttonText = $(this).text(),
-      overlayType = $(this).attr("class").split(" ")[2];
-  $(".overlay").toggleClass("open");
-  $(this).toggleClass("active");
-  $(this).attr("data-text", buttonText);
-  if($(".overlay").hasClass("open")){
-    console.log(overlayType);
-    overlayOpen(overlayType);
-    $(this).text("Close Overlay");
-  } else {
-    console.log(overlayType)
-    overlayClose(overlayType);
-    $(this).text($(this).attr("data-text"));
+
+  if( i === 0 ){
+
+    i++;
+    setTimeout( function() {
+      i=0;
+    }, 1000)
+
+    var buttonText = $(this).text(),
+    overlayType = $(this).attr("class").split(" ")[2],
+    otherOverlay = $(".overlay > div").not("." + overlayType).attr("class").split(" ")[1],
+    $this = $(this);
+
+    // Overlay, active link
+    if( $(".overlay").hasClass("open") && $(this).hasClass("active")){
+
+      console.log("First Scenario")
+
+      overlayClose(overlayType);
+      $(".overlay ." + overlayType).removeClass("active");
+      $(".overlay").toggleClass("open");
+      $(this).toggleClass("active");
+      $this.text($(this).attr("data-text"));
+
+      // Overlay, inactive link
+    } else if( $(".overlay").hasClass("open") && !$(this).hasClass("active") ){
+
+      console.log("Second Scenario")
+
+      overlayClose(otherOverlay);
+      $(".overlay").toggleClass("open");
+      $("header.global aside .active").text($("header.global aside .active").attr("data-text"));
+      $("header.global aside .active").toggleClass("active");
+      $(".overlay .active").removeClass("active");
+
+      setTimeout( function() {
+        overlayOpen(overlayType);
+        $(".overlay ." + overlayType).addClass("active");
+        $this.attr("data-text", buttonText);
+        $(".overlay").toggleClass("open");
+        $this.toggleClass("active");
+        setTimeout( function() {
+          $this.text("Close Overlay");
+        }, 500);
+      }, 1000)
+
+      // No overlay, no link
+    } else {
+
+      console.log("Third Scenario");
+      $(this).attr("data-text", buttonText);
+
+      overlayOpen(overlayType);
+      $(".overlay ." + overlayType).addClass("active");
+      $(".overlay").toggleClass("open");
+      $(this).toggleClass("active");
+
+      setTimeout( function() {
+        $this.text("Close Overlay");
+      }, 500);
+
+    }
+
   }
+
 });
 
 $(".product-slider .button").click(function(){
   var type = $(this).attr("class").split(" ").pop(),
-  currentSlider = $(this).parent().parent().parent().parent(),
+  currentSliderClass = $(this).parent().parent().parent().parent().attr("class").split(" ").pop(),
   currentWrapper = $(this).parent().parent().parent().children(".slide-wrapper"),
+  currentSlides = currentWrapper.children().children(".slide"),
   currentActiveSlide = currentWrapper.children().children(".active"),
   shiftAmount = 100,
   potentialShift = (parseInt(currentWrapper.children().children(".slide").length, 10) - 1) * shiftAmount * -1,
@@ -216,41 +277,61 @@ $(".product-slider .button").click(function(){
   if(type === "right"){
     currentAmount = currentAmount - shiftAmount;
 
-    if(currentAmount === potentialShift){
-      $(this).parent().children(".right").addClass("disabled");
-    } else {
-      $(this).parent().children(".right").removeClass("disabled");
-    }
-
-    $(currentWrapper).velocity({ translateX: currentAmount + "%" }, { duration: 500, easing: "swing"});
+    // $(currentWrapper).velocity({ translateX: currentAmount + "%" }, { duration: 500, easing: "swing"});
+    $(currentWrapper).css("transform", "translateX(" + currentAmount + "%)");
     $(currentWrapper).attr("data-shift-amount", currentAmount);
     $(currentActiveSlide).next().addClass("active");
     $(currentActiveSlide).removeClass("active");
 
-  } else {
+  } else if (type === "left"){
+
     currentAmount = currentAmount + shiftAmount;
 
-    if( currentAmount === 0 ) {
-      $(this).parent().children(".left").addClass("disabled");
-    }  else {
-      $(this).parent().children(".left").removeClass("disabled");
-    }
-
-    $(currentWrapper).velocity({ translateX: currentAmount + "%" }, { duration: 500, easing: "swing"});
+    // $(currentWrapper).velocity({ translateX: currentAmount + "%" }, { duration: 500, easing: "swing"});
+    $(currentWrapper).css("transform", "translateX(" + currentAmount + "%)");
     $(currentWrapper).attr("data-shift-amount", currentAmount);
     $(currentActiveSlide).prev().addClass("active");
     $(currentActiveSlide).removeClass("active");
 
+  } else if ( type === "view-all" ){
+
+    if( $(currentWrapper).children(".wrapper").hasClass("view-all") ){
+
+      $(this).text("View All");
+
+      $(currentWrapper).addClass("line");
+      $(currentWrapper).removeClass("grid");
+
+      $(".product-slider." + currentSliderClass + " .left").removeClass("hidden");
+      $(".product-slider." + currentSliderClass + " .right").removeClass("hidden");
+
+      $(currentWrapper).css("transform", "translateX(0)");
+      $(currentWrapper).attr("data-shift-amount", "0");
+
+      $(currentWrapper).children(".wrapper").removeClass("view-all");
+      $(currentSlides).attr("class", "slide");
+
+      sliderActiveSet();
+
+    } else {
+
+      $(this).text("View Less");
+
+      $(currentWrapper).removeClass("line");
+      $(currentWrapper).addClass("grid");
+
+      $(".product-slider." + currentSliderClass + " .left").addClass("hidden");
+      $(".product-slider." + currentSliderClass + " .right").addClass("hidden");
+
+      $(currentWrapper).css("transform", "translateX(0)");
+      $(currentWrapper).attr("data-shift-amount", "0");
+
+      $(currentWrapper).children(".wrapper").addClass("view-all");
+      $(currentSlides).attr("class", "slide active");
+
+    }
   }
 
-  if(currentAmount === potentialShift){
-    console.log("MAX!");
-    $(this).parent().children(".right").addClass("disabled");
-  } else if( currentAmount === 0 ) {
-    console.log("MIN!")
-    $(this).parent().children(".left").addClass("disabled");
-  } else {
-    $(this).parent().children().removeClass("disabled");
-  }
+  disabledButtons(currentSliderClass, currentAmount, potentialShift);
 
 });

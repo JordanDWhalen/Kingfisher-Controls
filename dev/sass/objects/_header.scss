@@ -102,6 +102,7 @@ header.global{
       margin: 0 .5rem;
       color: white;
       text-decoration: none;
+      text-align: center;
       display: block;
       white-space: nowrap;
       transition: .25s all ease;
@@ -109,6 +110,18 @@ header.global{
         pointer-events: all;
         background-color: $white;
         color: $dark-sky;
+      }
+      &.request{
+        width: 172px;
+        &.active{
+          width: 160px;
+        }
+      }
+      &.help{
+        width: 70px;
+        &.active{
+          width: 160px;
+        }
       }
     }
   }
@@ -178,6 +191,7 @@ header.global{
   }
   &.scrolled.overlay-open{
     border-top: 1px solid $white;
+    border-bottom: 1px solid $white;
     background-color: transparentize($dark-sky, .1)!important;
     *{
       color: $white;

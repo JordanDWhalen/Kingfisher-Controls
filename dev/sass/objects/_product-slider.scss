@@ -12,9 +12,9 @@
   .slide{
     min-width: 100%;
     display: flex;
-    justify-content: space-between;
+    justify-content: flex-start;
     opacity: .5;
-    transition: .5s all ease;
+    transition: .5s opacity ease;
     &.active{
       opacity: 1;
     }
@@ -24,12 +24,16 @@
   }
 
   .lead{
-    margin: 0 0 1rem;
+    margin: 0 0 2rem;
+    align-items: flex-end;
   }
 
   .slide-wrapper{
     margin: 0 -1rem;
     width: auto;
+    &.line{
+      transition: .5s all ease;
+    }
   }
 
   .container{
@@ -44,9 +48,14 @@
       margin-left: 1rem;
     }
   }
+
   .wrapper{
     width: auto;
     display: flex;
     justify-content: space-between;
+    &.view-all{
+      flex-direction: column;
+    }
   }
+
 }
