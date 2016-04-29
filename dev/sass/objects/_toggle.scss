@@ -1,0 +1,41 @@
+.toggle{
+  display: none;
+  height: 32px;
+  svg{
+    height: 32px;
+    width: 36px;
+    rect{
+      transform-origin: center;
+      transition: .25s all ease;
+    }
+    #top, #mid{
+      transform: translateY(0px) translateX(0px) rotate(0deg);
+    }
+    #bot{
+      transform: translateY(0);
+    }
+  }
+  @include breakpoint(1000px) {
+    display: block;
+    color: $white;
+  }
+}
+
+.toggle-open{
+  rect{
+    width: 30px;
+  }
+  .toggle{
+    rect{
+    }
+    #top{
+      transform: translateY(10px) translateX(-3px) rotate(45deg);
+    }
+    #mid{
+      transform: translateY(0px) translateX(-3px) rotate(-45deg);
+    }
+    #bot{
+      transform: translateY(10px);
+    }
+  }
+}

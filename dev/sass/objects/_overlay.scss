@@ -98,3 +98,27 @@
     }
   }
 }
+
+
+.mobile .overlay{
+  position: static;
+  .help,.request{
+    position: static;
+    max-height: 0px;
+    overflow: hidden;
+    padding: 0 40px;
+    border: 1px solid $white;
+    margin: -2px;
+    &.active{
+      margin: 0;
+      max-height: 1000px;
+      padding: 40px;
+      border: 1px solid $white;
+      border-bottom: none;
+      pointer-events: all;
+      a{
+        border: 1px solid $white;
+      }
+    }
+  }
+}

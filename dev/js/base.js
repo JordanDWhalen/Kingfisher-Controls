@@ -48,7 +48,6 @@ function sliderLayout(){
 
     }
 
-
     if ( minWidth(1450) ) {
       if( products.parent().is(".slide") ) {
         products.unwrap();
@@ -74,8 +73,83 @@ function sliderLayout(){
         }
       }
     }
+
   });
 }
+
+// Setting up a function to take care of laying out items to fit a grid, and hiding arrow buttons as well as properly
+// updating the button label
+function viewAllLayout(currentWrapper, currentSliderClass, currentSlides, button) {
+
+  if( $(currentWrapper).children(".wrapper").hasClass("view-all") ){
+
+    $(button).text("View All");
+
+    $(currentWrapper).addClass("line");
+    $(currentWrapper).removeClass("grid");
+
+    $(".product-slider." + currentSliderClass + " .left").removeClass("hidden");
+    $(".product-slider." + currentSliderClass + " .right").removeClass("hidden");
+
+    $(currentWrapper).css("transform", "translateX(0)");
+    $(currentWrapper).attr("data-shift-amount", "0");
+
+    $(currentWrapper).children(".wrapper").removeClass("view-all");
+    $(currentSlides).attr("class", "slide");
+
+    sliderActiveSet();
+
+  } else {
+
+    $(button).text("View Less");
+
+    $(currentWrapper).removeClass("line");
+    $(currentWrapper).addClass("grid");
+
+    $(".product-slider." + currentSliderClass + " .left").addClass("hidden");
+    $(".product-slider." + currentSliderClass + " .right").addClass("hidden");
+
+    $(currentWrapper).css("transform", "translateX(0)");
+    $(currentWrapper).attr("data-shift-amount", "0");
+
+    $(currentWrapper).children(".wrapper").addClass("view-all");
+    $(currentSlides).attr("class", "slide active");
+
+  }
+
+}
+
+
+// Setting up a function to run on load to check and see if a section is open by default
+function viewAllDefaults() {
+
+  $(".product-slider").each( function() {
+
+    var currentWrapper = $(this).children().children(".slide-wrapper"),
+        currentSliderClass = $(this).attr("class").split(" ").pop(),
+        currentSlides = currentWrapper.children().children(".slide");
+
+        if(currentWrapper.hasClass("grid")){
+
+          $(".product-slider." + currentSliderClass + " .button.view-all").text("View Less");
+
+          $(currentWrapper).removeClass("line");
+          $(currentWrapper).addClass("grid");
+
+          $(".product-slider." + currentSliderClass + " .left").addClass("hidden");
+          $(".product-slider." + currentSliderClass + " .right").addClass("hidden");
+
+          $(currentWrapper).css("transform", "translateX(0)");
+          $(currentWrapper).attr("data-shift-amount", "0");
+
+          $(currentWrapper).children(".wrapper").addClass("view-all");
+          $(currentSlides).attr("class", "slide active");
+
+        }
+
+  });
+
+};
 
 // Setting some defaults for each slider
 function sliderDefaults() {
@@ -92,6 +166,7 @@ function sliderDefaults() {
   });
 }
 
+// Setting the first slide active
 function sliderActiveSet() {
   $(".product-slider .slide-wrapper").each( function(){
     var slideAmount = $(this).attr("data-shift-amount"),
@@ -103,6 +178,7 @@ function sliderActiveSet() {
   });
 }
 
+// Creating a function to disable the arrow buttons based on slide position
 function disabledButtons(currentSliderClass, currentAmount, potentialShift) {
   if(currentAmount === potentialShift){
     $(".product-slider." + currentSliderClass + " .right").addClass("disabled");
@@ -137,6 +213,7 @@ function flexImagefix(target){
   $(target).height(square);
 }
 
+// Defining the default overlay settings
 function overlayLoad(){
   setTimeout(function(){
     var helpHeight    = $(".overlay .help").innerHeight(),
@@ -144,9 +221,10 @@ function overlayLoad(){
 
     $(".overlay .help").css("top", helpHeight * -1);
     $(".overlay .request").css("top", requestHeight * -1);
-  }, 50);
+  }, 500);
 }
 
+// Creating a function for showing the overlay
 function overlayOpen(overlayType){
   var overlayOffset = $("." + overlayType).innerHeight();
   var paddingIncrease = parseInt($(".hero").css("padding-top"), 10) + overlayOffset;
@@ -155,6 +233,7 @@ function overlayOpen(overlayType){
   $(".hero, .product-hero").velocity({paddingTop: paddingIncrease}, { easing: "linear"});
 }
 
+// Creating a function for hiding the overlay
 function overlayClose(overlayType){
   var overlayOffset = $("." + overlayType).innerHeight();
   console.log(overlayType + " : " + overlayOffset);
@@ -162,6 +241,39 @@ function overlayClose(overlayType){
   $(".header-wrapper").velocity({ paddingTop: 0 }, { easing: "linear"});
   $("header.global").removeClass("overlay-open");
   $(".hero").velocity({paddingTop: paddingDecrease}, { easing: "linear"});
+
+}
+
+// Setting up functions for shifting the sliders appropriately
+function slideLeft(currentAmount, shiftAmount, currentWrapper, currentActiveSlide, currentSliderClass, potentialShift){
+
+  currentAmount = currentAmount + shiftAmount;
+
+  // $(currentWrapper).velocity({ translateX: currentAmount + "%" }, { duration: 500, easing: "swing"});
+  $(currentWrapper).css("transform", "translateX(" + currentAmount + "%)");
+  $(currentWrapper).attr("data-shift-amount", currentAmount);
+  $(currentActiveSlide).prev().addClass("active");
+  $(currentActiveSlide).removeClass("active");
+
+  setTimeout(function(){
+    disabledButtons(currentSliderClass, currentAmount, potentialShift);
+  }, 50)
+
+}
+
+function slideRight(currentAmount, shiftAmount, currentWrapper, currentActiveSlide, currentSliderClass, potentialShift){
+
+  currentAmount = currentAmount - shiftAmount;
+
+  // $(currentWrapper).velocity({ translateX: currentAmount + "%" }, { duration: 500, easing: "swing"});
+  $(currentWrapper).css("transform", "translateX(" + currentAmount + "%)");
+  $(currentWrapper).attr("data-shift-amount", currentAmount);
+  $(currentActiveSlide).next().addClass("active");
+  $(currentActiveSlide).removeClass("active");
+
+  setTimeout(function(){
+    disabledButtons(currentSliderClass, currentAmount, potentialShift);
+  }, 50)
 
 }
 
@@ -174,6 +286,7 @@ flexImagefix(".product-info .images .selected-image .wrapper img");
 
 sliderLayout();
 sliderDefaults();
+viewAllDefaults();
 overlayLoad();
 
 $(window).resize( function() {
@@ -265,7 +378,8 @@ $("header.global aside a").click( function(e){
 });
 
 $(".product-slider .button").click(function(){
-  var type = $(this).attr("class").split(" ").pop(),
+  var button = $(this),
+  type = $(this).attr("class").split(" ").pop(),
   currentSliderClass = $(this).parent().parent().parent().parent().attr("class").split(" ").pop(),
   currentWrapper = $(this).parent().parent().parent().children(".slide-wrapper"),
   currentSlides = currentWrapper.children().children(".slide"),
@@ -275,63 +389,93 @@ $(".product-slider .button").click(function(){
   currentAmount = parseInt(currentWrapper.attr("data-shift-amount"), 0);
 
   if(type === "right"){
-    currentAmount = currentAmount - shiftAmount;
 
-    // $(currentWrapper).velocity({ translateX: currentAmount + "%" }, { duration: 500, easing: "swing"});
-    $(currentWrapper).css("transform", "translateX(" + currentAmount + "%)");
-    $(currentWrapper).attr("data-shift-amount", currentAmount);
-    $(currentActiveSlide).next().addClass("active");
-    $(currentActiveSlide).removeClass("active");
+    slideRight(currentAmount, shiftAmount, currentWrapper, currentActiveSlide, currentSliderClass, potentialShift);
+
+    // currentAmount = currentAmount - shiftAmount;
+    //
+    // // $(currentWrapper).velocity({ translateX: currentAmount + "%" }, { duration: 500, easing: "swing"});
+    // $(currentWrapper).css("transform", "translateX(" + currentAmount + "%)");
+    // $(currentWrapper).attr("data-shift-amount", currentAmount);
+    // $(currentActiveSlide).next().addClass("active");
+    // $(currentActiveSlide).removeClass("active");
 
   } else if (type === "left"){
 
-    currentAmount = currentAmount + shiftAmount;
-
-    // $(currentWrapper).velocity({ translateX: currentAmount + "%" }, { duration: 500, easing: "swing"});
-    $(currentWrapper).css("transform", "translateX(" + currentAmount + "%)");
-    $(currentWrapper).attr("data-shift-amount", currentAmount);
-    $(currentActiveSlide).prev().addClass("active");
-    $(currentActiveSlide).removeClass("active");
+    slideLeft(currentAmount, shiftAmount, currentWrapper, currentActiveSlide, currentSliderClass, potentialShift);
 
   } else if ( type === "view-all" ){
 
-    if( $(currentWrapper).children(".wrapper").hasClass("view-all") ){
+    viewAllLayout(currentWrapper, currentSliderClass, currentSlides, button);
 
-      $(this).text("View All");
-
-      $(currentWrapper).addClass("line");
-      $(currentWrapper).removeClass("grid");
-
-      $(".product-slider." + currentSliderClass + " .left").removeClass("hidden");
-      $(".product-slider." + currentSliderClass + " .right").removeClass("hidden");
-
-      $(currentWrapper).css("transform", "translateX(0)");
-      $(currentWrapper).attr("data-shift-amount", "0");
-
-      $(currentWrapper).children(".wrapper").removeClass("view-all");
-      $(currentSlides).attr("class", "slide");
-
-      sliderActiveSet();
-
-    } else {
-
-      $(this).text("View Less");
-
-      $(currentWrapper).removeClass("line");
-      $(currentWrapper).addClass("grid");
-
-      $(".product-slider." + currentSliderClass + " .left").addClass("hidden");
-      $(".product-slider." + currentSliderClass + " .right").addClass("hidden");
-
-      $(currentWrapper).css("transform", "translateX(0)");
-      $(currentWrapper).attr("data-shift-amount", "0");
-
-      $(currentWrapper).children(".wrapper").addClass("view-all");
-      $(currentSlides).attr("class", "slide active");
-
-    }
+    // if( $(currentWrapper).children(".wrapper").hasClass("view-all") ){
+    //
+    //   $(this).text("View All");
+    //
+    //   $(currentWrapper).addClass("line");
+    //   $(currentWrapper).removeClass("grid");
+    //
+    //   $(".product-slider." + currentSliderClass + " .left").removeClass("hidden");
+    //   $(".product-slider." + currentSliderClass + " .right").removeClass("hidden");
+    //
+    //   $(currentWrapper).css("transform", "translateX(0)");
+    //   $(currentWrapper).attr("data-shift-amount", "0");
+    //
+    //   $(currentWrapper).children(".wrapper").removeClass("view-all");
+    //   $(currentSlides).attr("class", "slide");
+    //
+    //   sliderActiveSet();
+    //
+    // } else {
+    //
+    //   $(this).text("View Less");
+    //
+    //   $(currentWrapper).removeClass("line");
+    //   $(currentWrapper).addClass("grid");
+    //
+    //   $(".product-slider." + currentSliderClass + " .left").addClass("hidden");
+    //   $(".product-slider." + currentSliderClass + " .right").addClass("hidden");
+    //
+    //   $(currentWrapper).css("transform", "translateX(0)");
+    //   $(currentWrapper).attr("data-shift-amount", "0");
+    //
+    //   $(currentWrapper).children(".wrapper").addClass("view-all");
+    //   $(currentSlides).attr("class", "slide active");
+    //
+    // }
   }
 
   disabledButtons(currentSliderClass, currentAmount, potentialShift);
 
+});
+
+$(".product-slider .product").click( function(e){
+
+  var parentSlide = $(this).parent(),
+      currentWrapper = $(this).parent().parent().parent(),
+      currentSliderClass = currentWrapper.parent().parent().attr("class").split(" ").pop(),
+      currentAmount = parseInt(currentWrapper.attr("data-shift-amount"), 0),
+      shiftAmount = 100,
+      potentialShift = (parseInt(currentWrapper.children().children(".slide").length, 10) - 1) * shiftAmount * -1,
+      currentSlides = currentWrapper.children().children(".slide"),
+      currentActiveSlide = currentWrapper.children().children(".active");
+
+      // console.log(currentSliderClass);
+
+
+  if( !parentSlide.hasClass("active") ){
+    e.preventDefault();
+
+      if( parentSlide.prev().hasClass("active") ) {
+        slideRight( currentAmount, shiftAmount, currentWrapper, currentActiveSlide, currentSliderClass, potentialShift );
+      } else if ( parentSlide.next().hasClass("active") ){
+        slideLeft( currentAmount, shiftAmount, currentWrapper, currentActiveSlide, currentSliderClass, potentialShift );
+      }
+
+  }
+})
+
+
+$(".toggle").click( function() {
+  $(".mobile header.global").toggleClass("toggle-open");
 });
