@@ -257,6 +257,18 @@ header.global{
     .logo, .logo small, .logo i, a{
       color: $white;
     }
+    aside a{
+      border-color: $white;
+    }
+    .breadcrumbs{
+      border-top: 1px solid $white;
+      .icon-angle-right{
+        color: $white;
+      }
+      a{
+        color: $white;
+      }
+    }
     .mobile-nav{
       max-height: 100vh;
       background-color: transparentize($dark-sky, .1)!important;

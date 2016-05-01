@@ -161,7 +161,7 @@ function sliderDefaults() {
     var slideNumber = $(this).children().children(".slide-wrapper").children().children(".slide").length;
 
     if(slideNumber <= 1){
-      $(this).children().children(".lead").children().children(".right").addClass("disabled");
+      $(this).children().children(".lead").children(".controls").hide();
     }
   });
 }
@@ -193,6 +193,11 @@ function disabledButtons(currentSliderClass, currentAmount, potentialShift) {
   } else {
     $(".product-slider." + currentSliderClass + " .button").removeClass("disabled");
   }
+
+  if (potentialShift === 0) {
+    console.log("No shit");
+  }
+
 }
 
 // Causing the header navigation background color to fade in as you scroll
@@ -474,7 +479,6 @@ $(".product-slider .product").click( function(e){
 
   }
 })
-
 
 $(".toggle").click( function(e) {
   e.preventDefault();

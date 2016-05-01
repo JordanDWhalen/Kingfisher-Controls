@@ -9,12 +9,8 @@
     padding: 2rem 3rem;
   }
   @include breakpoint(815px) {
-    padding: 3rem 2rem;
     border: 5px solid $blue;
-  }
-
-  @include breakpoint(815px) {
-    padding: 3rem 1.25rem;
+    padding: 3rem 0rem;
   }
 
   & + .product-slider{
@@ -29,7 +25,7 @@
     transition: .5s opacity ease;
     @include breakpoint(815px) {
       flex-direction: column;
-      padding: .5rem;
+      padding: 0;
     }
     &.active{
       opacity: 1;
@@ -42,8 +38,13 @@
   .slide-wrapper{
     margin: 0 -1rem;
     width: auto;
+    transition: .5s all ease;
     @include breakpoint(1215px) {
       padding: 0 .5rem;
+    }
+    @include breakpoint(815px) {
+      padding: 0;
+      margin: 0;
     }
     &.line{
       transition: .5s all ease;
@@ -53,11 +54,7 @@
   .container{
       @extend .container;
       overflow:visible;
-  }
-
-  .controls{
-    display: inline-flex;
-    height: 50px;
+      position: relative;
   }
 
   .wrapper{

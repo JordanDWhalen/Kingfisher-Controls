@@ -2,14 +2,16 @@
   display: inline-flex;
   height: 50px;
   @include breakpoint(815px) {
+    display: block;
+    @extend .clearfix;
     margin-top: 1rem;
-    justify-content: space-between;
     width: 100%;
-  }
-  .arrows{
-    display: inline-flex;
-    .button{
+    .left, .right{
+      float: left;
       margin-right: 1rem;
+    }
+    .view-all{
+      float: right;
     }
   }
 
@@ -41,6 +43,7 @@
   }
   .button{
     transition: .5s opacity ease;
+    margin-left: 1rem;
     &.view-all{
       width: 120px;
       text-align: center;
