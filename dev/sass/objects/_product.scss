@@ -10,9 +10,6 @@
     width: calc(33.33333333% - 1rem);
     margin: 0 .5rem;
   }
-  @include breakpoint(1000px) {
-    width: calc(50% - 2rem);
-  }
   @include breakpoint(815px) {
     width: 100%;
     display: flex;
@@ -62,6 +59,7 @@
     }
     @include breakpoint(815px) {
       border: none;
+      padding: 1.5rem;
     }
     * + *{
       display: block;

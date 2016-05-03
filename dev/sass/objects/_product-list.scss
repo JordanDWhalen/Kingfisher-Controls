@@ -1,6 +1,7 @@
 .product-list{
-  border-top: 1px solid $blue;
-  padding: 5rem 1rem;
+  @include breakpoint(915px) {
+    padding: 1rem 2rem;
+  }
   .img-container{
     display: block;
     height: 200px;
@@ -10,6 +11,11 @@
     @include breakpoint( 1450px) {
       height: 300px;
       width: 300px;
+    }
+    @include breakpoint(915px) {
+      height: 150px;
+      width: 150px;
+      padding: 1rem;
     }
     .img{
       position: relative;
@@ -31,35 +37,42 @@
       border: 1px solid $blue;
     }
   }
-  .list{
-    article{
-      margin: 1rem 0;
-      padding: 1rem 0;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      .content{
-        margin-left: 2rem;
-        max-width: 55rem;
-        * + * {
-          margin-top: 1rem;
-        }
-        p{
-          font-size: 1.25rem;
-          line-height: 1.5;
-        }
-        h4{
-          font-size: 1.5rem;
-          font-weight: 500;
-          a{
-            color: $blue;
-            text-decoration: none;
-          }
-        }
+
+  article{
+    margin: 1rem 0;
+    padding: 1rem 0;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    @include breakpoint(915px) {
+      align-items: flex-start;
+    }
+    .content{
+      margin-left: 2rem;
+      max-width: 55rem;
+      @include breakpoint(915px) {
+        width: calc(100% - 150px);
+      }
+      * + * {
+        margin-top: 1rem;
+      }
+      p{
+        font-size: 1.25rem;
+        line-height: 1.5;
+        max-width: 45rem;
+      }
+      h4{
+        font-size: 1.5rem;
+        font-weight: 500;
         a{
-          display: block;
+          color: $blue;
+          text-decoration: none;
         }
+      }
+      a{
+        display: block;
       }
     }
   }
+
 }

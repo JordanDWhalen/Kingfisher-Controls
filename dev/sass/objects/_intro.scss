@@ -1,6 +1,9 @@
 .intro{
   display: flex;
   overflow: hidden;
+  @include breakpoint(950px) {
+    flex-direction: column;
+  }
   h2{
     font-size: 2rem;
     font-weight: 600;
@@ -8,6 +11,7 @@
   }
   p{
     max-width: 55rem;
+    line-height: 1.5;
     font-size: 1.25rem;
   }
   * + *{
@@ -19,6 +23,14 @@
     flex-direction: column;
     justify-content: center;
     align-items: flex-start;
+    width: 60%;
+    @include breakpoint(1115px) {
+      padding: 5rem 2.5rem;
+    }
+    @include breakpoint(950px) {
+      width: 100%;
+      padding: 4rem 2rem;
+    }
   }
   .img{
     width: 40%;
@@ -26,6 +38,12 @@
     margin: 0;
     overflow: hidden;
     filter: contrast(1.25) grayscale(.5) brightness(.8);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    @include breakpoint(950px) {
+      display: none;
+    }
   }
   img{
     margin: 0;

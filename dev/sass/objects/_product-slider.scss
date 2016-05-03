@@ -25,7 +25,8 @@
     transition: .5s opacity ease;
     @include breakpoint(815px) {
       flex-direction: column;
-      padding: 0;
+      width: calc(100% + 2rem);
+      padding: 0 1rem;
     }
     &.active{
       opacity: 1;
@@ -44,7 +45,8 @@
     }
     @include breakpoint(815px) {
       padding: 0;
-      margin: 0;
+      width: calc(100% - 0rem);
+      margin: 0 -1rem;
     }
     &.line{
       transition: .5s all ease;
@@ -55,6 +57,9 @@
       @extend .container;
       overflow:visible;
       position: relative;
+      @include breakpoint(815px) {
+        padding: 0 2rem;
+      }
   }
 
   .wrapper{

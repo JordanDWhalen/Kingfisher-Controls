@@ -1,10 +1,3 @@
-// Setting up default variables for usage throughout the site
-var huge = 1450,
-large  = 1250,
-medium  = 1000,
-small = 750;
-
-
 // Checking what the screen size is, in order to accurately adjust the layout of different items
 function minWidth(width) {
   var screenWidth =  $(window).width();
@@ -313,6 +306,7 @@ Interactive JS
 // This needs to be disabled for 50ms in order for JS to have time to properly calculate the height of these sections
 
 var i = 0;
+
 $("header.global aside a").click( function(e){
   e.preventDefault();
 
@@ -382,7 +376,8 @@ $("header.global aside a").click( function(e){
 
 });
 
-$(".product-slider .button").click(function(){
+$(".product-slider .button").click(function(e){
+  e.preventDefault();
   var button = $(this),
   type = $(this).attr("class").split(" ").pop(),
   currentSliderClass = $(this).parent().parent().parent().parent().attr("class").split(" ").pop(),
@@ -397,14 +392,6 @@ $(".product-slider .button").click(function(){
 
     slideRight(currentAmount, shiftAmount, currentWrapper, currentActiveSlide, currentSliderClass, potentialShift);
 
-    // currentAmount = currentAmount - shiftAmount;
-    //
-    // // $(currentWrapper).velocity({ translateX: currentAmount + "%" }, { duration: 500, easing: "swing"});
-    // $(currentWrapper).css("transform", "translateX(" + currentAmount + "%)");
-    // $(currentWrapper).attr("data-shift-amount", currentAmount);
-    // $(currentActiveSlide).next().addClass("active");
-    // $(currentActiveSlide).removeClass("active");
-
   } else if (type === "left"){
 
     slideLeft(currentAmount, shiftAmount, currentWrapper, currentActiveSlide, currentSliderClass, potentialShift);
@@ -413,41 +400,6 @@ $(".product-slider .button").click(function(){
 
     viewAllLayout(currentWrapper, currentSliderClass, currentSlides, button);
 
-    // if( $(currentWrapper).children(".wrapper").hasClass("view-all") ){
-    //
-    //   $(this).text("View All");
-    //
-    //   $(currentWrapper).addClass("line");
-    //   $(currentWrapper).removeClass("grid");
-    //
-    //   $(".product-slider." + currentSliderClass + " .left").removeClass("hidden");
-    //   $(".product-slider." + currentSliderClass + " .right").removeClass("hidden");
-    //
-    //   $(currentWrapper).css("transform", "translateX(0)");
-    //   $(currentWrapper).attr("data-shift-amount", "0");
-    //
-    //   $(currentWrapper).children(".wrapper").removeClass("view-all");
-    //   $(currentSlides).attr("class", "slide");
-    //
-    //   sliderActiveSet();
-    //
-    // } else {
-    //
-    //   $(this).text("View Less");
-    //
-    //   $(currentWrapper).removeClass("line");
-    //   $(currentWrapper).addClass("grid");
-    //
-    //   $(".product-slider." + currentSliderClass + " .left").addClass("hidden");
-    //   $(".product-slider." + currentSliderClass + " .right").addClass("hidden");
-    //
-    //   $(currentWrapper).css("transform", "translateX(0)");
-    //   $(currentWrapper).attr("data-shift-amount", "0");
-    //
-    //   $(currentWrapper).children(".wrapper").addClass("view-all");
-    //   $(currentSlides).attr("class", "slide active");
-    //
-    // }
   }
 
   disabledButtons(currentSliderClass, currentAmount, potentialShift);
@@ -484,3 +436,8 @@ $(".toggle").click( function(e) {
   e.preventDefault();
   $(".mobile header.global").toggleClass("toggle-open");
 });
+
+$(".technical-details").click( function(e){
+  e.preventDefault();
+  $(this).toggleClass("open");
+})

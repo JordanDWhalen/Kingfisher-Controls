@@ -21,9 +21,27 @@
         padding: 1rem;
         &.scrolled{
           border:1px solid $blue;
+          .logo{
+            a:hover{
+              color: $medium-sky;
+            }
+          }
+          #menu-icon-wrapper{
+            &:hover{
+              fill: $medium-sky;
+            }
+          }
         }
         &.toggle-open{
           border:1px solid $white;
+          #menu-icon-wrapper{
+            fill: $white;
+          }
+          a{
+            &:hover{
+              color: $medium-sky;
+            }
+          }
         }
       }
       .logo{
@@ -59,6 +77,12 @@
           padding: 1rem;
           border: 1px solid $white;
           border-top: none;
+          &:hover{
+            background-color: transparentize($white, .3);
+            span{
+              color: $medium-sky;
+            }
+          }
           span{
             color: $white;
             margin-right: .5rem;

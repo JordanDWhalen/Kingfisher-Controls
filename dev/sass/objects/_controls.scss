@@ -8,7 +8,7 @@
     width: 100%;
     .left, .right{
       float: left;
-      margin-right: 1rem;
+      margin: 0 1rem 0 0;
     }
     .view-all{
       float: right;
@@ -27,15 +27,28 @@
     height: auto;
     border-top: 1px solid $blue;
     background-color: $light-sky;
+
     .container{
       display: flex;
       justify-content: space-between;
+      @include breakpoint(915px) {
+        .button{
+          display: none;
+        }
+      }
     }
     .form-field, .button{
       margin: 0;
     }
     .form-fields{
       display: flex;
+      @include breakpoint(915px) {
+        justify-content: space-between;
+        label{
+          display: none;
+        }
+        width: 100%;
+      }
       > * + *{
         margin-left: 1rem;
       }

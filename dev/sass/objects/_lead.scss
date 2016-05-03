@@ -19,10 +19,12 @@
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
+    flex-direction: column;
     p{
       font-size: 1.25rem;
       line-height: 1.5;
       max-width: 55rem;
+      width: 100%;
       margin-right: calc(100% - 55rem);
     }
     * + p{

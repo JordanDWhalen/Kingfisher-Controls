@@ -31,7 +31,7 @@
     background-color: transparent;
     .bg{
       opacity: 1;
-      filter: none;
+      filter: contrast(1.25) grayscale(0) brightness(.75);
     }
   }
   h1{
@@ -101,6 +101,14 @@
     width: 100%;
     background-color: transparent;
     padding:  calc(115px + 10rem) 0 5rem;
+    @include breakpoint(1000px) {
+      padding-top: 200px;
+      h1{
+        font-size: 3rem;
+        line-height: 1.5;
+        text-align: center;
+      }
+    }
     .bg{
       opacity: 1;
       filter: none;

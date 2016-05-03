@@ -1,7 +1,47 @@
 .about{
   .hero{
-    .bg{
-      background-position: bottom;
+    min-height: 700px;
+    @include breakpoint(1000px) {
+      min-height: 0px;
     }
-  }  
+    .bg{
+    }
+  }
+  .our-services, .our-products{
+    border-top: 1px solid $blue;
+    padding-top: 5rem;
+    .container{
+      overflow: visible;
+      @include breakpoint(1350px) {
+        max-width: 100%;
+        padding: 0 2rem;
+        .highlighted{
+          margin: 1rem 0 3rem;
+        }
+      }
+      @include breakpoint(915px) {
+        padding: 0;
+        .highlighted{
+          margin: 0;
+        }
+      }
+    }
+    .lead{
+      @include breakpoint(950px) {
+        padding: 0 2rem;
+      }
+      .content{
+        flex-direction: column;
+        p{
+          width: 100%;
+        }
+      }
+    }
+  }
+  .our-services{
+
+  }
+  .our-products{
+
+  }
 }
