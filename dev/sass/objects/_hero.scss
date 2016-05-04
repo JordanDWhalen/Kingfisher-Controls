@@ -1,5 +1,5 @@
 .hero{
-  background-color: blue;
+  background-color: $blue;
   height: auto;
   display: flex;
   flex-direction: column;
@@ -114,6 +114,14 @@
       filter: none;
       background-image: linear-gradient($blue, $white);
       z-index: -1;
+    }
+  }
+  &.flat-hero{
+
+    .bg{
+      opacity: 1;
+      filter: none;
+      // background-image: linear-gradient($sky, $blue);
     }
   }
 }

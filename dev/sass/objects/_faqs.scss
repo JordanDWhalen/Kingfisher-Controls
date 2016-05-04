@@ -1,0 +1,133 @@
+.faqs{
+  padding: 5rem 0;
+  border: 10px solid $blue;
+  @include breakpoint(1015px) {
+    padding: 3rem 0;
+  }
+  .container{
+    @include breakpoint(1350px) {
+      padding: 0 5rem;
+    }
+    @include breakpoint(1015px) {
+      padding: 0 3rem;
+    }
+    @include breakpoint(815px) {
+      padding: 0 2rem;
+    }
+  }
+  .faq-group{
+    & + .faq-group{
+      margin-top: 6rem;
+    }
+  }
+  .faq-intro{
+    margin-bottom: 2rem;
+    h2{
+      font-size: 2rem;
+      font-weight: 600;
+      margin-bottom: 1rem;
+      @include breakpoint(1015px) {
+        font-size: 1.5rem;
+      }
+      @include breakpoint(815px) {
+        font-size: 1.25rem;
+      }
+    }
+    p{
+      font-size: 20px;
+      line-height: 1.5;
+      max-width: 55rem;
+    }
+  }
+  .faq{
+    border: 1px solid $dark-sky;
+    transition: $default-transition;
+    overflow: hidden;
+    & + .faq{
+      margin-top: 1rem;
+    }
+    header{
+      padding: 2rem;
+      font-weight: 600;
+      background-color: $dark-sky;
+      transition: $default-transition;
+      &:hover{
+        background-color: $sky;
+        h3{
+          color: $dark-sky;
+        }
+        cursor: pointer;
+      }
+      h3{
+        color: $white;
+        display: inline-flex;
+        justify-content: space-between;
+        width: 100%;
+        align-items: center;
+        font-size: 2rem;
+        line-height: 2rem;
+        @include breakpoint(1015px) {
+          font-size: 1.5rem;
+          line-height: 1.5rem;
+        }
+        @include breakpoint(815px) {
+          font-size: 1.25rem;
+          line-height: 1.25rem;
+        }
+        &:after{
+          transition: $default-transition;
+          font-weight: 100;
+          font-family: $icon-font;
+          display: block;
+          content: "\e801";
+          height: 2rem;
+          width: 2rem;
+          text-align: center;
+          line-height: 2rem;
+          @include breakpoint(1015px) {
+            height: 1.5rem;
+            width: 1.5rem;
+            line-height: 1.5rem;
+          }
+          @include breakpoint(815px) {
+            height: 1.25rem;
+            width: 1.25rem;
+            line-height: 1.25rem;
+          }
+        }
+      }
+    }
+    .content{
+      overflow: hidden;
+      padding: 2rem;
+      transition: $default-transition;
+      * + *{
+        margin-top: 1rem;
+      }
+      p{
+        font-size: 1.25rem;
+        line-height: 1.5;
+        max-width: 60rem;
+      }
+    }
+    &:hover{
+      border: 1px solid $sky;
+    }
+    &.open{
+      border-color: $blue;
+      header{
+        background-color: $blue;
+        h3{
+          &:after{
+            transform: rotate(90deg);
+          }
+        }
+      }
+      &:hover{
+        h3{
+          color: $white;
+        }
+      }
+    }
+  }
+}
