@@ -25,8 +25,21 @@
     display: block;
     padding: 2rem 0;
     height: auto;
-    border-top: 1px solid $blue;
+    border: 10px solid $blue;
+    border-bottom: none;
     background-color: $light-sky;
+
+    @include breakpoint(815px) {
+      border-width: 5px 5px 1px 5px;
+    }
+
+    @include breakpoint(650px) {
+      border-width: 1px;
+      padding: 1rem 0;
+      .wrapper{
+        padding: 0 1rem;
+      }
+    }
 
     .container{
       display: flex;

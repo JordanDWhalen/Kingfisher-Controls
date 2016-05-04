@@ -5,10 +5,18 @@ footer.global{
   background-color: $light-sky;
   padding: 2rem;
   border-top: 1px solid $blue;
+  @include breakpoint(815px) {
+    flex-wrap: wrap;
+  }
   .logo{
     font-size: 1.5rem;
     display: flex;
     align-items: center;
+    @include breakpoint(900px) {
+      width: 100%;
+      justify-content: center;
+      margin-bottom: 1rem;
+    }
     i{
       color: $medium-sky;
       margin-right: 1rem;
@@ -21,6 +29,10 @@ footer.global{
     text-transform: uppercase;
   }
   nav{
+    @include breakpoint(900px) {
+      width: 100%;
+      text-align: center;
+    }
     a{
       margin: 0 1rem;
       color: $medium-sky;
