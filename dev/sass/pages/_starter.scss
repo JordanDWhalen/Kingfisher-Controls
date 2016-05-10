@@ -43,6 +43,10 @@
       font-weight: 600;
       padding: 1rem;
       background-color: $white;
+      &:hover{
+        background-color: $sky;
+        
+      }
     }
   }
 }
