@@ -345,10 +345,12 @@ $(function() {
         console.log("First Scenario")
 
         overlayClose(overlayType);
-        $(".overlay ." + overlayType).removeClass("active");
         $(".overlay").toggleClass("open");
         $(this).toggleClass("active");
         $this.text($(this).attr("data-text"));
+        setTimeout(function() {
+          $(".overlay ." + overlayType).removeClass("active");
+        }, 750);
 
         // Overlay, inactive link
       } else if( $(".overlay").hasClass("open") && !$(this).hasClass("active") ){
