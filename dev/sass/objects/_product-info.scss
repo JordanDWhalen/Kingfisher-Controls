@@ -280,6 +280,7 @@
       width: 100%;
       display: flex;
       flex-direction: column;
+      align-items: flex-start;
       background-color: $light-sky;
       border: 1px solid $blue;
       h5{
@@ -287,6 +288,9 @@
       }
       p{
         padding: 0 2rem;
+      }
+      .button.hollow.blue{
+        margin: 1rem 2rem;
       }
       .form-field, .price-info{
         width: 100%;
@@ -340,7 +344,7 @@
       border-top: 0px;
       border-bottom: 0px;
     }
-    .button{
+    .button.purchase{
       text-align: center;
       padding: 2rem;
       color: $white;
