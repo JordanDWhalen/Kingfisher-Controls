@@ -11,6 +11,23 @@
     margin-bottom: 1rem;
   }
 
+  h2 a{
+    color:$blue;
+    text-decoration: none;
+    border-bottom: 1px solid transparent;
+    i{
+      color:$blue;
+      margin-left: 1rem;
+    }
+    &:hover{
+      border-bottom: 1px solid $blue;
+      i{
+        animation: arrow-hover 1s infinite alternate;
+        border: none;
+      }
+    }
+  }
+
   h2, h3, h4, h5, h6{
     font-size: 2rem;
   }

@@ -1,1 +1,6 @@
 $default-transition:  .125s all ease;
+
+@keyframes arrow-hover {
+  0%   { margin-left: 1rem; }
+  100% { margin-left: 1.5rem; }
+}

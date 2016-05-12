@@ -10,6 +10,7 @@
       display: flex;
       justify-content: space-between;
       flex-wrap: wrap;
+      align-items: flex-start;
       @include breakpoint(1000px) {
         .selected-image img{
           max-width: 200px;
@@ -131,52 +132,39 @@
     }
   }
   .technical-details{
-    margin: 0 0 2rem;
+    margin: 1rem 0 2rem;
     overflow: hidden;
-    background-color: $white;
+    background-color: transparent;
     border: 1px solid $blue;
-    padding: 1.5rem;
-    @include breakpoint(1000px) {
-      width: 100%;
-      display: block;
-      padding: 0;
-      &:hover{
-        h3{
-          color: $white;
-          cursor: pointer;
-          background-color: $blue;
-        }
-      }
+    padding: .5rem;
+    width: calc(100% - 4rem);
+    display: block;
+    padding: 0;
+    pointer-events: all;
+    position: relative;
+    z-index: 3;
+    margin: 1rem 2rem;
+    &:hover{
+      cursor: pointer;
       h3{
-        transition: .125s all ease;
-        padding: 2rem;
-        display: flex;
-        justify-content: space-between;
-        &:after{
-          transition: .125s all ease;
-          font-family: $icon-font;
-          content: '\e807';
-        }
-      }
-      &.open{
-        h3{
-          color: $white;
-          background-color: $blue;
-          &:after{
-            transform: rotate(90deg);
-          }
-        }
-        .content{
-          max-height: 1500px;
-          padding: 2rem;
-        }
+        color: $white;
+        background-color: $sky;
       }
     }
     h3{
-      font-size: 1.5rem;
+      font-size: 1.25rem;
       color: $white;
-      padding-bottom: 1rem;
       color: $dark-sky;
+      pointer-events: none;
+      transition: .125s all ease;
+      padding: 1.5rem;
+      display: flex;
+      justify-content: space-between;
+      &:after{
+        transition: .125s all ease;
+        font-family: $icon-font;
+        content: '\e807';
+      }
     }
     .content{
       max-height: 15rem;
@@ -186,16 +174,12 @@
       margin-right: -3rem;
       transition: .25s all ease;
       padding-bottom: 1rem;
-      @include breakpoint(1000px) {
-              padding: 0 2rem;
-        max-height: 0px;
-        overflow: hidden;
-        margin: 0;
-        p{
-          margin: 0;
-        }
-      }
+      padding: 0;
+      max-height: 0px;
+      overflow: hidden;
+      margin: 0;
       p{
+        margin: 0;
         color: $dark-sky;
         margin-bottom: .25rem;
         &:last-of-type{
@@ -206,11 +190,35 @@
     p{
       font-size: 1rem;
     }
+    &.open{
+      h3{
+        color: $dark-sky;
+        background-color: $white;
+        border-bottom: 1px solid $blue;
+        &:after{
+          transform: rotate(90deg);
+        }
+      }
+      .content{
+        background-color: $white;
+        max-height: 1500px;
+        padding: 1.5rem 0;
+      }
+    }
   }
   .purchasing-options{
-    border: 1px solid $blue;
     background-color: $white;
-    @include breakpoint(1000px) {
+    p{
+      color: $dark-sky;
+    }
+    input{
+      display: inline-block;
+      border-color: $blue;
+      text-align: right;
+      width: 7.5rem;
+      &::placeholder{
+        color: $sky;
+      }
     }
     & > header{
       padding: 1.5rem;
@@ -220,40 +228,126 @@
         color: $white;
       }
     }
-    & > * {
-      padding: 1rem 1.5rem;
-      border-top: 1px solid $blue;
-      font-size: 1.25rem;
+
+    h5{
+      font-size: 1.5rem;
+      margin-bottom: .5rem;
+    }
+
+    .option-links{
+      display: flex;
+      a{
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        font-size: 1rem;
+        font-weight: 500;
+        text-decoration: none;
+        background-color: $sky;
+        padding: 1rem;
+        transition: .125s all ease;
+        margin-bottom: -1px;
+        border: 1px solid transparent;
+        border-bottom: 1px solid $blue;
+        &:first-of-type{
+          border-left: 1px solid $blue;
+        }
+        &:last-of-type{
+          border-right: 1px solid $blue;
+        }
+        &:hover{
+          background-color: darken($sky, 10%);
+          color: $white;
+        }
+        &.active{
+          pointer-events: none;
+          background-color: $light-sky;
+          color: $dark-sky;
+          border: 1px solid $blue;
+          border-top: none;
+          border-bottom: none;
+        }
+      }
+    }
+    .option-container{
+      overflow: hidden;
+      .option-wrapper{
+        display: flex;
+      }
+    }
+    .option{
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      background-color: $light-sky;
+      border: 1px solid $blue;
+      h5{
+        padding: 2rem 2rem 0;
+      }
+      p{
+        padding: 0 2rem;
+      }
+      .form-field, .price-info{
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 1rem 2rem;
+        border-top: 1px solid $blue;
+        border-bottom: 1px solid $blue;
+        margin-top: 1rem;
+        label, h4{
+          font-size: 1.5rem;
+        }
+      }
+      .price-info{
+        margin: -1px 0;
+        p{
+          padding: 0;
+        }
+      }
+    }
+    .discount{
+      border: 1px solid $blue;
+      border-top: none;
+      padding: 1rem 2rem;
+      header{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        h4{
+          font-size: 1.5rem;
+        }
+      }
+    }
+    .total{
+      border: 1px solid $blue;
+      border-top: none;
+      padding: 1rem 2rem;
       display: flex;
       justify-content: space-between;
-      align-items: baseline;
-      p{
-        color: $dark-sky;
+      align-items: center;
+      .price{
+        color: $green;
+        border: none;
+        padding: 0px;
       }
-      &.discount{
-        flex-wrap: wrap;
-        header{
-          width: 100%;
-          justify-content: space-between;
-          display: flex;
-          align-items: baseline;
-        }
-      }
-      &.button{
-        color: $white;
-        text-decoration: none;
-        text-transform: uppercase;
-        font-weight: 700;
-        padding: 2rem;
+    }
+    .request-details{
+      padding: 2rem;
+      border: 1px solid $blue;
+      border-top: 0px;
+      border-bottom: 0px;
+    }
+    .button{
+      text-align: center;
+      padding: 2rem;
+      color: $white;
+      background-color: darken($green, 5%);
+      border: 1px solid darken($green, 10%);
+      &:hover{
         background-color: $green;
-        display: block;
-        border: 1px solid darken($green, 15%);
-        border-top: 1px solid $blue;
-        margin: -1px;
-        text-align: center;
-        &:hover{
-          background-color: lighten($green, 10%);
-        }
       }
     }
   }

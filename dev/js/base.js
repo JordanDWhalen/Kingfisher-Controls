@@ -207,19 +207,19 @@ $(function() {
   }
 
   // Setting up a function to fix image sizes for the Product Page
-  function flexImagefix(target){
-    var square = $(target).width();
-    $(target).height(square);
-  }
+  // function flexImagefix(target){
+  //   var square = $(target).width();
+  //   $(target).height(square);
+  // }
 
   // Defining the default overlay settings
   function overlayLoad(){
     setTimeout(function(){
-      var helpHeight    = $(".overlay .help").innerHeight(),
-      requestHeight = $(".overlay .request").innerHeight();
+      var helpHeight    = $(".overlay .help").innerHeight();
+      // requestHeight = $(".overlay .request").innerHeight();
 
       $(".overlay .help").css("top", helpHeight * -1);
-      $(".overlay .request").css("top", requestHeight * -1);
+      // $(".overlay .request").css("top", requestHeight * -1);
     }, 500);
   }
 
@@ -290,22 +290,41 @@ $(function() {
     });
   }
 
+  function optionLayout() {
+    var i = 0;
+    $(".option-wrapper .option").each( function(){
+      $(this).addClass("" + i);
+      i++;
+    });
+    var i = 0;
+    $(".option-links a").each( function(){
+      $(this).addClass("" + i);
+      i++;
+    });
+
+    var optionCount = $(".option").length,
+        optionWidth = optionCount * 100 + "%",
+        optionLinkWidth = 100 / optionCount + "%";
+
+    $(".option-wrapper").css("width", optionWidth);
+    $(".option-links a").css("width", optionLinkWidth);
+  }
+
   /***************************************
   Functions to run on load, resize, and scroll
   ***************************************/
 
   navigationFade();
-  flexImagefix(".product-info .images .selected-image .wrapper img");
 
   sliderLayout();
   sliderDefaults();
   viewAllDefaults();
   overlayLoad();
   faqHeightAdjustment();
+  optionLayout();
 
   $(window).resize( function() {
     sliderLayout();
-    flexImagefix(".product-info .images .selected-image .wrapper img");
     sliderActiveSet();
     faqHeightAdjustment();
   });
@@ -336,7 +355,7 @@ $(function() {
 
       var buttonText = $(this).text(),
       overlayType = $(this).attr("class").split(" ")[2],
-      otherOverlay = $(".overlay > div").not("." + overlayType).attr("class").split(" ")[1],
+      otherOverlay = $(".overlay > div").not("." + overlayType).attr("class"),
       $this = $(this);
 
       // Overlay, active link
@@ -478,4 +497,12 @@ $(function() {
       i=0;
     }
   });
+
+  $(".option-links a").click( function(e) {
+    e.preventDefault();
+    $(".option-links .active").removeClass("active");
+    $(this).addClass("active");
+    var count = parseInt($(this).attr("class")) * - 100 +"%";
+    $(".option-wrapper").velocity({ marginLeft: count});
+  })
 });
