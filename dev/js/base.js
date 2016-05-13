@@ -22,8 +22,11 @@ $(function() {
   function sliderLayout(){
     // Adding a unique class to each slider for differentiation of
     $(".product-slider").each( function( index, value ) {
+
       $(this).addClass("" + index);
+
       var sliderNumber = $(this).attr("class").split(" ").pop(),
+
       products = $(".product-slider." + sliderNumber + " .wrapper a");
 
       if( products.parent().is(".slide") ) {
