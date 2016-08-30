@@ -78,7 +78,7 @@ a{
     &.blue{
       border-color: $blue;
       color: $blue;
-      &:hover{
+      &:hover, &.filled{
         background-color: $blue;
         color: $white;
       }

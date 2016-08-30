@@ -41,6 +41,7 @@ footer.global{
       }
       &.active{
         color: $dark-sky;
+        pointer-events: none;
         font-weight: 900;
         text-decoration: none;
         &:hover{

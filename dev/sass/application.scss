@@ -1,6 +1,11 @@
 @charset "UTF-8";
 
+
 @import "components/*";
-@import "vendor/*";
+@import "vendor/reset.scss";
 @import "objects/*";
 @import "pages/*";
+// @import "vendor/bootstrap.scss";
+@import "vendor/cart.scss";
+@import "vendor/checkout.scss";
+@import "vendor/integrate.scss";

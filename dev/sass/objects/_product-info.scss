@@ -173,11 +173,11 @@
       margin-bottom: -3rem;
       margin-right: -3rem;
       transition: .25s all ease;
-      padding-bottom: 1rem;
-      padding: 0;
+      padding: 0 1.5rem;
       max-height: 0px;
       overflow: hidden;
       margin: 0;
+      overflow: scroll;
       p{
         margin: 0;
         color: $dark-sky;
@@ -186,14 +186,28 @@
           margin-bottom: 1rem;
         }
       }
+      table{
+        border: 1px solid $light-sky;
+        tr{
+          border: 1px solid $light-sky;
+          &:nth-of-type(odd){
+            background-color: lighten($light-sky, 2.5%);
+          }
+        }
+        td{
+          border: 1px solid $light-sky;
+          padding: 1rem;
+
+        }
+      }
     }
     p{
       font-size: 1rem;
     }
     &.open{
       h3{
-        color: $dark-sky;
-        background-color: $white;
+        color: $white;
+        background-color: $dark-sky;
         border-bottom: 1px solid $blue;
         &:after{
           transform: rotate(90deg);
@@ -201,8 +215,8 @@
       }
       .content{
         background-color: $white;
-        max-height: 1500px;
-        padding: 1.5rem 0;
+        max-height: 300px;
+        padding: 1.5rem;
       }
     }
   }
